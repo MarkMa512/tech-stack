@@ -1,0 +1,1 @@
+# [ALL 47 STRING METHODS IN PYTHON EXPLAINED](https://www.youtube.com/watch?v=bnSYeYFRCaA)

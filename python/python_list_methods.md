@@ -1,0 +1,1 @@
+# [ALL 11 LIST METHODS IN PYTHON EXPLAINED](https://www.youtube.com/watch?v=0yySumZTxJ0)

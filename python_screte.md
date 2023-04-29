@@ -1,0 +1,1 @@
+[The FULL Guide To Secrets (Module) For Python Developers](https://www.youtube.com/watch?v=xVUjZGlqNFQ)

@@ -1,5 +1,48 @@
 # [ALL 11 LIST METHODS IN PYTHON EXPLAINED](https://www.youtube.com/watch?v=0yySumZTxJ0)
 
+### 1. append
+
+```py
+people: list[str] = ["Mario", "Elon", "Trump", "Annabel"]
+people.append("Luigi")
+people.append(["Luigi"]) # this will add a list as an element to the list
+
+print(people)
+```
+Output:
+> ['Mario', 'Elon', 'Trump', 'Annabel', 'Luigi', ['Luigi']]
+
+### 2. clear
+Empty the list
+```py
+people: list[str] = ["Mario", "Elon", "Trump", "Annabel"]
+people.clear()
+print(people)
+```
+
+Output:
+> []
+
+
+### 3. copy
+
+### 4. count
+
+### 5. extend
+
+### 6. index
+
+### 7. insert
+
+### 8. pop
+
+### 9. remove
+
+### 10. reverse
+
+### 11. sort
+
+
 
 # [THIS Is One Of The Fastest & Cleanest Ways To Filter Lists In Python](https://www.youtube.com/watch?v=fysLCGYToFM)
 

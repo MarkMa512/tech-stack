@@ -187,16 +187,19 @@ let f = y[2]; // 3
 The `if` statement is used to execute code if a condition is true. The `else` statement is used to execute code if a condition is false. The `else if` statement is used to execute code if multiple conditions are true. The `if` statement can be used as an expression. The `if` statement can be used without an `else` statement.
 
 ```rust
-let x = 5;
+fn main(){
+    let x = 5;
 
-if x == 5 {
-    println!("x is 5");
-} else if x == 6 {
-    println!("x is 6");
-} else {
-    println!("x is not 5 or 6");
+    if x == 5 {
+        println!("x is 5");
+    } else {
+        println!("x is not 5");
+    }
 }
 ```
+
+Output:
+> x is 5  
 
 ### Comparison Operators 
 
@@ -236,50 +239,52 @@ fn main(){
 ```
 
 Output:
-> Hello, world!: 1
-> Hello, world!: 2
-> Hello, world!: 3
-> Hello, world!: 4
-> Hello, world!: 6
-> Hello, world!: 7
-> Hello, world!: 8
-> Hello, world!: 9
-> Hello, world!: 10
+> Hello, world!: 1  
+> Hello, world!: 2  
+> Hello, world!: 3  
+> Hello, world!: 4  
+> Hello, world!: 6  
+> Hello, world!: 7  
+> Hello, world!: 8  
+> Hello, world!: 9  
+> Hello, world!: 10  
 
 
 ## While Loop
 A while loop is a loop that runs while a condition is true. To create a while loop, use the `while` keyword. To stop a while loop, use the `break` keyword. To skip the rest of the iteration and start a new one, use the `continue` keyword.
 
 ```rust
-let mut n = 0;
+fn main(){
+    let mut n = 0;
 
-while n < 10 {
-    // everything in here will be executed while n < 10
+    while n < 10 {
+        // everything in here will be executed while n < 10
 
-    n+=1; 
+        n+=1; 
 
-    if n == 5 {
-        continue; // skip the rest of the iteration and start a new one, so "Hello, world!: 5" will not be printed
-    }   
+        if n == 5 {
+            continue; // skip the rest of the iteration and start a new one, so "Hello, world!: 5" will not be printed
+        }   
 
-    println!("Hello, world!: {}", n);  // print "Hello, world!: 1", "Hello, world!: 2", "Hello, world!: 3", ...
+        println!("Hello, world!: {}", n);  // print "Hello, world!: 1", "Hello, world!: 2", "Hello, world!: 3", ...
 
-    if n == 10 {
-        break; // stop the loop
+        if n == 10 {
+            break; // stop the loop
+        }
     }
 }
 ```
 
 Output:
-> Hello, world!: 1
-> Hello, world!: 2
-> Hello, world!: 3
-> Hello, world!: 4
-> Hello, world!: 6
-> Hello, world!: 7
-> Hello, world!: 8
-> Hello, world!: 9
-> Hello, world!: 10
+> Hello, world!: 1  
+> Hello, world!: 2  
+> Hello, world!: 3  
+> Hello, world!: 4  
+> Hello, world!: 6  
+> Hello, world!: 7  
+> Hello, world!: 8  
+> Hello, world!: 9  
+> Hello, world!: 10  
 
 ## For Loop 
 In rust, all for loops in rust are for-each loops, all for loops must use an iterator. An iterator is a trait that allows you to iterate over a sequence of values. To create a for loop, use the `for` keyword. To stop a for loop, use the `break` keyword. To skip the rest of the iteration and start a new one, use the `continue` keyword.
@@ -304,18 +309,18 @@ fn main(){
 ```
 
 Output:
-> The number is 1
-> The number is 2
-> The number is 4
-> The number is 5
-> The number is 7
-> The number is 8
-> The number is 10
-> The number is 11
-> The number is 13
-> ...
-> The number is 39
-> The number is 40
+> The number is 1  
+> The number is 2  
+> The number is 4  
+> The number is 5  
+> The number is 7  
+> The number is 8  
+> The number is 10  
+> The number is 11  
+> The number is 13  
+> ...  
+> The number is 39  
+> The number is 40  
 
 ### Looping over a Vector
 A vector is a growable array of type `Vec<T>`. 
@@ -331,11 +336,11 @@ fn main(){
 ```
 
 Output:
-> The animal is Rabbit
-> The animal is Dog
-> The animal is Cat
-> The animal is Bird
-> The animal is Fish
+> The animal is Rabbit  
+> The animal is Dog  
+> The animal is Cat  
+> The animal is Bird  
+> The animal is Fish  
 
 A negative example of not using `iter()`:
 
@@ -364,9 +369,9 @@ fn main(){
 ```
 
 Output:
-> The animal is Rabbit and its index is 0
-> The animal is Dog and its index is 1
-> The animal is Cat and its index is 2
-> The animal is Bird and its index is 3
-> The animal is Fish and its index is 4
+> The animal is Rabbit and its index is 0  
+> The animal is Dog and its index is 1  
+> The animal is Cat and its index is 2  
+> The animal is Bird and its index is 3  
+> The animal is Fish and its index is 4  
 

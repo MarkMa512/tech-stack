@@ -160,6 +160,27 @@ let d = y.0; // 1
 let e = y.1; // "hello"
 let f = y.2; // true
 ```
+A tuple can have at most 12 elements. To have more than 12 elements, use nested tuples.
+
+```rust
+let x = (1, "hello", true, (2, "world", false));
+let y: (i32, &str, bool, (i32, &str, bool)) = (1, "hello", true, (2, "world", false));
+
+// to access the nested elements, use the dot notation with parentheses
+let a = (y.3).0; // 2
+
+println!("{}", a);
+```
+
+Output: 
+> 2
+
+##### Desctructuring Assignment for Tuples
+You can use destructuring assignment to assign the elements of a tuple to variables.
+
+```rust
+```
+
 
 #### Array Type
 An array is a collection of values of the same type. Arrays have a fixed length. Once declared, the length of an array cannot be changed. Arrays are specified with square brackets. All elements of an array must have the same type. The default array type is `[T; N]`, where `T` is the type of the elements and `N` is the length of the array. Arrays are mutable by default. To make an array immutable, use the `const` keyword. Arrays are placed on the stack.
@@ -374,4 +395,79 @@ Output:
 > The animal is Cat and its index is 2  
 > The animal is Bird and its index is 3  
 > The animal is Fish and its index is 4  
+
+## Enum 
+An enum is a type that can have a fixed set of values. To create an enum, use the `enum` keyword. To create a value of an enum, use the `::` operator. To use an enum, use the `match` keyword.
+
+```rust
+enum Direction {
+    Up,
+    Down,
+    Left,
+    Right
+}
+
+fn main(){
+    let player_direction:Direction = Direction::Up; // player_direction is of type Direction
+
+    match player_direction { // match is used to match the value of player_direction to the value of the enum, it is like a switch statement in other languages
+        Direction::Up => println!("We are heading up!"),
+        Direction::Down => println!("We are heading down!"),
+        Direction::Left => println!("We are heading left!"),
+        Direction::Right => println!("We are heading right!")
+    }
+}
+```
+
+Output:
+> We are heading up!  
+
+### Enum with values
+An enum can also have values. To create an enum with values, use the `enum` keyword. The values of an enum can be of any type. All values of an enum must be of the same type. Commonly, the values of an enum are of type `u32` or `String`. ??? 
+
+```rust
+enum Direction {
+    Up(u32),
+    Down(u32),
+    Left(u32),
+    Right(u32)
+}
+
+fn main(){
+    let player_direction:Direction = Direction::Up(1); // player_direction is of type Direction
+
+    match player_direction { // match is used to match the value of player_direction to the value of the enum, it is like a switch statement in other languages
+        Direction::Up(n) => println!("We are heading up by {}!", n),
+        Direction::Down(n) => println!("We are heading down by {}!", n),
+        Direction::Left(n) => println!("We are heading left by {}!", n),
+        Direction::Right(n) => println!("We are heading right by {}!", n)
+    }
+}
+```
+
+## Constants
+A constant is a value declared at global scope that cannot be changed. To create a constant, use the `const` keyword. To use a constant, use the `::` operator.
+
+```rust
+// constant is declared at global scope
+// constant variable name must be all uppercase, with _ as the word separator
+const MAXIMUM_NUMBER:u8 = 5; // MAXIMUM_NUMBER is of type u8, we must specify the type of the constant
+
+fn main(){
+    println!("The maximum number is {}", MAXIMUM_NUMBER);
+
+    for n in 1..MAXIMUM_NUMBER {
+        println!("The number is {}", n);
+    }
+}
+```
+
+Output:
+> The maximum number is 5  
+> The number is 1  
+> The number is 2  
+> The number is 3
+> The number is 4
+
+
 

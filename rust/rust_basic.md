@@ -176,10 +176,18 @@ Output:
 > 2
 
 ##### Desctructuring Assignment for Tuples
-You can use destructuring assignment to assign the elements of a tuple to variables.
+You can use destructuring assignment to assign the elements of a tuple to variables / declare variables from the elements of a tuple.
 
 ```rust
+fn main() {
+    let x = (1, "hello", true);
+    let (a, b, c) = x;
+    println!("a = {}, b = {}, c = {}", a, b, c);
+}
 ```
+
+Output:
+> a = 1, b = hello, c = true  
 
 
 #### Array Type
@@ -471,3 +479,124 @@ Output:
 
 
 
+## Functions
+A function is a block of code that can be called. To create a function, use the `fn` keyword. To call a function, use the `()` operator. To return a value from a function, use the `return` keyword.
+
+```rust
+fn main(){
+    println!("Hello World!");
+    print_number_to(5);
+    print_sum(5, 6);
+    let sum = add_one(5);
+    println!("The sum is {}", sum);
+}
+
+fn print_number_to(x:i32){ // x is of type i32
+    for n in 1..x {
+        println!("The number is {}", n);
+    }
+}
+
+fn print_sum(x:i32, y:i32){ // x and y are of type i32
+    println!("The sum is {}", x + y);
+}
+
+fn add_one(x:i32) -> i32 { // x is of type i32, the function returns a value of type i32
+    return x + 1;
+}
+
+fn is_even(x:i32) -> bool { // x is of type i32, the function returns a value of type bool
+    return x % 2 == 0;
+}
+```
+
+Output:
+> Hello World!  
+> The number is 1  
+> The number is 2  
+> The number is 3  
+> The number is 4   
+> The sum is 11     
+> The sum is 6  
+
+## Code Blocks
+A code block is a block of code that can be called. To create a code block, use the `{}` operator. To call a code block, use the `()` operator. To return a value from a code block, use the `return` keyword.
+
+```rust
+fn main(){
+    // code block can access variables declared outside of the code block, but not vice versa
+    let x = 10; 
+    {
+        // code block is isolated 
+        let y = 5;
+
+        println!("The value of x is {}", x);
+        println!("The value of y is {}", y);
+    }
+
+    println!("The value of x is {}", x);
+    println!("The value of y is {}", y); // this will cause an error because y is not declared in this scope
+}
+```
+
+Output:
+> The value of x is 10  
+> The value of y is 5  
+
+## Shadowing
+Shadowing is the process of redeclaring a variable. To shadow a variable, use the `let` keyword. 
+
+- Without `let` keyword in the code block: 
+    ```rust
+    fn main(){
+        let mut x = 10; // x is of type i32
+
+        {
+            x = 15; 
+        }
+
+        println!("The value of x is {}", x); // the value of x is now 15
+
+    }
+    ```
+
+    - Output:
+    > The value of x is 15
+
+- With `let` keyword and shadowing 
+    ```rust
+    fn main(){
+        let x = 10; 
+
+        {
+            let x = 15;  // x=15 shadows x=10, and x=15 is only valid in this scope
+        }
+
+        println!("The value of x is {}", x); // the value of x is still 10
+
+    ```
+
+    - Output:
+    > The value of x is 10
+
+- Shadowing can even change the type of the variable 
+    ```rust
+    fn main(){
+        let x = 10; // x is of type i32
+
+        {
+            let x = "Hello World!"; // x is of type &str
+        }
+
+        println!("The value of x is {}", x); // the value of x is still 10
+
+    }
+    ```
+
+    - Output:
+    > The value of x is 10  
+
+
+## References
+
+## Structs

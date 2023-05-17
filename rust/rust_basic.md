@@ -598,5 +598,54 @@ Shadowing is the process of redeclaring a variable. To shadow a variable, use th
 
 
 ## References
+A reference is a pointer to a variable. To create a reference, use the `&` operator. To dereference a reference, use the `*` operator. It is important to note that a reference is immutable by default. To make a reference mutable, use the `mut` keyword. It is another way to pass a variable to a function without moving the variable. 
+
+
+```rust
+fn main(){
+    let mut x = 10; 
+    let xr = &x; // xr is a reference to x, xr is of type &i32; it is a immutable reference to x
+    let xr_2 = &x; // xr_2 is another reference to x, xr_2 is of type &i32 as well; it is a immutable reference to x
+
+    println!("The value of x is {}", xr); // the value of x is 10
+    println!("The value of x is {}", xr_2); // the value of x is 10
+
+    { // this must be a code block because we cannot have two mutable references to the same variable in the same scope 
+        let xr_3 = &mut x; // xr_3 is a mutable reference to x, xr_3 is of type &mut i32; it is a mutable reference to x, we can change the value of x through xr_3
+        *xr_3 = 15; // we can change the value of x through xr_3
+    }
+    println!("The value of x is {}", xr_3); // the value of x is 15
+    println!("The value of x is {}", x); // the value of x is 15, it is borrowing the value of x from xr_3???
+
+
+}
+```
+### The Rules of References
+- At any given time, you can have either one mutable reference or any number of immutable references, but not both at the same time.
+- Any borrow must last for a scope no greater than that of the owner. This is because when the owner goes out of scope, the value will be dropped. 
+- You can have one or the other of these two kinds of references, but not both at the same time:
+    - One or more references (`&T`) to a resource.
+    - Exactly one mutable reference (`&mut T`).
+
 
 ## Structs
+`Struct` is a custom data type that allows you to group named fields of different types into a single type. To create a struct, use the `struct` keyword. To access a field of a struct, use the `.` operator. To create an instance of a struct, use the `struct_name { field_name: value, ... }` syntax. 
+
+```rust
+struct Color{
+    red: u8, // u8: unsigned 8-bit integer, 0 - 255 
+    green: u8,
+    blue: u8,
+}
+
+fn main(){
+    let background = Color{red: 255, green: 70, blue: 0}; // background is an instance of Color 
+    println!("The background color is RGB({}, {}, {})", background.red, background.green, background.blue); // The background color is RGB(255, 70, 0)
+    // we use the . operator to access the fields of background 
+
+    let mut foreground = Color{red: 0, green: 0, blue: 0}; // foreground is an instance of Color
+    foreground.red = 255; // we can change the value of foreground.red because foreground is mutable
+    println!("The foreground color is RGB({}, {}, {})", foreground.red, foreground.green, foreground.blue); // The foreground color is RGB(255, 0, 0)
+}
+```
+

@@ -233,4 +233,48 @@ def is_instance(obj: Any, cls: Union[type, Tuple[type, ...]]) -> bool:
 
 ### Generator Type
 ```python
+from typing import Generator
+
+def get_numbers() -> Generator[int, None, None]:
+    yield 1
+    yield 2
+    yield 3
+
+for num in get_numbers():
+    print(num)
 ```
+
+Output:
+> 1 
+> 2 
+> 3 
+
+### Iterator Type
+```python
+from typing import Iterator
+
+def get_numbers() -> Iterator[int]:
+    yield 1
+    yield 2
+    yield 3
+
+for num in get_numbers():
+    print(num)
+```
+
+Output:
+> 1 
+> 2 
+> 3 
+
+## [Type Hinting for Tuples](https://www.youtube.com/watch?v=Y5lnASwTtxU)
+
+```python
+string: str = "string" 
+
+
+_t1: tuple[int] = (1, 2, 3) 
+_t2: tuple[int, int, int] = (1, 2, 3) # this is how we should type hint a tuple
+_t3: tuple[int, ...] = (1, 2, 3) # tuple of ints of any length, otherwise, we need to specify the length of the tuple
+
+_t4: tuple[int | str, ...] = (1, 2, 3, "string") # tuple of ints or strings of any length

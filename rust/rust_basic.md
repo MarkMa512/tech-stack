@@ -649,3 +649,19 @@ fn main(){
 }
 ```
 
+### Tuple Structs
+Tuple structs are structs that do not have named fields. To create a tuple struct, use the `struct_name(value, ...)` syntax. To access a field of a tuple struct, use the `.` operator. 
+
+```rust
+struct Color(u8, u8, u8); // Color is a tuple struct, it has three fields of type u8, but has no names
+
+fn main{
+    let red = Color(255, 0, 0); // red is an instance of Color
+    println!("The red color is RGB({}, {}, {})", red.0, red.1, red.2); // The red color is RGB(255, 0, 0)
+}
+``` 
+
+Output:
+> The red color is RGB(255, 0, 0)
+
+### Pass by Reference  

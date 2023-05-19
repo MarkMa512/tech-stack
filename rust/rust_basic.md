@@ -665,3 +665,44 @@ Output:
 > The red color is RGB(255, 0, 0)
 
 ### Pass by Reference  
+When passing a struct to a function, the struct is moved to the function. To keep the variable within the scope, we need to pass by reference. To pass a struct by reference, use the `&` operator. 
+
+```rust
+struct Color{
+    red: u8, // u8: unsigned 8-bit integer, 0 - 255 
+    green: u8,
+    blue: u8,
+}
+
+fn main(){
+    let blue = Color{red: 0, green: 0, blue: 255}; // blue is an instance of Color
+    print_color(&blue); // we pass a reference to blue to the print_color function
+}
+
+fn print_color(color: &Color){ // color is a reference to a Color struct
+    println!("The color is RGB({}, {}, {})", color.red, color.green, color.blue); // The color is RGB(0, 0, 255)
+}
+```
+
+Output:
+> The color is RGB(0, 0, 255) 
+
+Pass without reference:
+```rust
+struct Color{
+    red: u8, // u8: unsigned 8-bit integer, 0 - 255 
+    green: u8,
+    blue: u8,
+}
+
+fn main(){
+    let blue = Color{red: 0, green: 0, blue: 255}; // blue is an instance of Color
+    print_color(blue); // we pass the blue struct to the print_color function
+
+    print_color(blue); // when we try to use blue again, we get an error because blue has been moved to the print_color function
+}
+
+fn print_color(color: Color){
+    println!("The color is RGB({}, {}, {})", color.red, color.green, color.blue); // The color is RGB(0, 0, 255)
+}
+```

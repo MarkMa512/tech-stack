@@ -137,80 +137,9 @@ let y: char = 'y';
 ```
 
 ### Compound Types
-Compound types can group multiple values into one type. Rust has two primitive compound types: tuples and arrays.
-
-#### Tuple Type
-A tuple is a collection of values of different types. Tuples have a fixed length. Once declared, the length of a tuple cannot be changed. Tuples are specified with parentheses. The type of a tuple is `(T1, T2, ..., Tn)`, where `T1`, `T2`, ..., `Tn` are the types of the elements of the tuple. Tuple can have at most 12 elements of different types. Tuples are primarily used when you want to return multiple values from a function. 
-
-```rust
-let x = (1, "hello", true);
-let y: (i32, &str, bool) = (1, "hello", true);
-```
-
-To access the elements of a tuple, use the dot notation.
-
-```rust
-let x = (1, "hello", true);
-let y: (i32, &str, bool) = (1, "hello", true);
-
-let a = x.0; // 1
-let b = x.1; // "hello"
-let c = x.2; // true
-let d = y.0; // 1
-let e = y.1; // "hello"
-let f = y.2; // true
-```
-A tuple can have at most 12 elements. To have more than 12 elements, use nested tuples.
-
-```rust
-let x = (1, "hello", true, (2, "world", false));
-let y: (i32, &str, bool, (i32, &str, bool)) = (1, "hello", true, (2, "world", false));
-
-// to access the nested elements, use the dot notation with parentheses
-let a = (y.3).0; // 2
-
-println!("{}", a);
-```
-
-Output: 
-> 2
-
-##### Desctructuring Assignment for Tuples
-You can use destructuring assignment to assign the elements of a tuple to variables / declare variables from the elements of a tuple.
-
-```rust
-fn main() {
-    let x = (1, "hello", true);
-    let (a, b, c) = x;
-    println!("a = {}, b = {}, c = {}", a, b, c);
-}
-```
-
-Output:
-> a = 1, b = hello, c = true  
+Compound types can group multiple values into one type. Rust has two primitive compound types: tuples and arrays. Refer to: 
 
 
-#### Array Type
-An array is a collection of values of the same type. Arrays have a fixed length. Once declared, the length of an array cannot be changed. Arrays are specified with square brackets. All elements of an array must have the same type. The default array type is `[T; N]`, where `T` is the type of the elements and `N` is the length of the array. Arrays are mutable by default. To make an array immutable, use the `const` keyword. Arrays are placed on the stack.
-
-```rust
-let x = [1, 2, 3];
-let y: [i32; 3] = [1, 2, 3];
-```
-
-To access the elements of an array, use the index notation.
-
-```rust
-let x = [1, 2, 3];
-let y: [i32; 3] = [1, 2, 3];
-
-let a = x[0]; // 1
-let b = x[1]; // 2
-let c = x[2]; // 3
-let d = y[0]; // 1
-let e = y[1]; // 2
-let f = y[2]; // 3
-```
 
 ## If Else Statement
 The `if` statement is used to execute code if a condition is true. The `else` statement is used to execute code if a condition is false. The `else if` statement is used to execute code if multiple conditions are true. The `if` statement can be used as an expression. The `if` statement can be used without an `else` statement.
@@ -477,6 +406,56 @@ Output:
 > The number is 3
 > The number is 4
 
+## Tuple
+A tuple is a collection of values of different types. Tuples have a fixed length. Once declared, the length of a tuple cannot be changed. Tuples are specified with parentheses. The type of a tuple is `(T1, T2, ..., Tn)`, where `T1`, `T2`, ..., `Tn` are the types of the elements of the tuple. Tuple can have at most 12 elements of different types. Tuples are primarily used when you want to return multiple values from a function. 
+
+```rust
+let x = (1, "hello", true);
+let y: (i32, &str, bool) = (1, "hello", true);
+```
+
+To access the elements of a tuple, use the dot notation.
+
+```rust
+let x = (1, "hello", true);
+let y: (i32, &str, bool) = (1, "hello", true);
+
+let a = x.0; // 1
+let b = x.1; // "hello"
+let c = x.2; // true
+let d = y.0; // 1
+let e = y.1; // "hello"
+let f = y.2; // true
+```
+A tuple can have at most 12 elements. To have more than 12 elements, use nested tuples.
+
+```rust
+let x = (1, "hello", true, (2, "world", false));
+let y: (i32, &str, bool, (i32, &str, bool)) = (1, "hello", true, (2, "world", false));
+
+// to access the nested elements, use the dot notation with parentheses
+let a = (y.3).0; // 2
+
+println!("{}", a);
+```
+
+Output: 
+> 2
+
+##### Destructuring Assignment for Tuples
+You can use destructuring assignment to assign the elements of a tuple to variables / declare variables from the elements of a tuple.
+
+```rust
+fn main() {
+    let x = (1, "hello", true);
+    let (a, b, c) = x;
+    println!("a = {}, b = {}, c = {}", a, b, c);
+}
+```
+
+Output:
+> a = 1, b = hello, c = true  
+
 
 
 ## Functions
@@ -544,7 +523,7 @@ Output:
 > The value of y is 5  
 
 ## Shadowing
-Shadowing is the process of redeclaring a variable. To shadow a variable, use the `let` keyword. 
+Shadowing is the process of re-declaring a variable. To shadow a variable, use the `let` keyword. 
 
 - Without `let` keyword in the code block: 
     ```rust
@@ -747,3 +726,71 @@ Output:
 > The number is 5  
 > The first character is a  
 
+## Array Type
+An array is a collection of values of the same type. Arrays have a fixed length. Once declared, the length of an array cannot be changed. Arrays are specified with square brackets. All elements of an array must have the same type. The default array type is `[T; N]`, where `T` is the type of the elements and `N` is the length of the array. Arrays are mutable by default. To make an array immutable, use the `const` keyword. Arrays are placed on the stack.
+
+```rust
+let x = [1, 2, 3];
+let y: [i32; 3] = [1, 2, 3];
+```
+
+To access the elements of an array, use the index notation.
+
+```rust
+let x = [1, 2, 3];
+let y: [i32; 3] = [1, 2, 3];
+
+let a = x[0]; // 1
+let b = x[1]; // 2
+let c = x[2]; // 3
+let d = y[0]; // 1
+let e = y[1]; // 2
+let f = y[2]; // 3
+```
+
+## Impl Keyword (Implement)
+The `impl` keyword is used to implement methods for a struct. This makes it possible to call methods on a struct, and more like an object. 
+
+**note: the last expression in a function is returned by default and has no semicolon at the end**
+
+```rust 
+struct Rectangle{
+    width: u32,
+    height: u32,
+}
+
+impl Rectangle{ // we use the impl keyword to implement methods for the Rectangle struct
+    fn area(&self) -> u32{ // we use the &self parameter to pass a reference to the struct, so that we can access the fields of the struct
+        self.width * self.height // we use the . operator to access the fields of the struct
+        // return self.width * self.height; // we can also use the return keyword
+        // note: the last expression in a function is returned by default and has no semicolon at the end
+    }
+
+    fn describe(&self){
+        println!("The rectangle has a width of {} and a height of {}", self.width, self.height);
+    }
+
+    fn is_square(&self) -> bool{
+        self.width == self.height
+    }
+}
+
+fn main(){
+    let rect = Rectangle{width: 10, height: 20}; // rect is an instance of Rectangle
+    println!("The area of the rectangle is {}", rect.area()); // The area of the rectangle is 200
+    rect.describe(); // The rectangle has a width of 10 and a height of 20
+
+    if rect.is_square(){
+        println!("The rectangle is a square");
+    }else{
+        println!("The rectangle is not a square");
+    }
+}
+```
+
+Output:
+> The area of the rectangle is 200  
+> The rectangle has a width of 10 and a height of 20  
+> The rectangle is not a square  
+
+## Strings 

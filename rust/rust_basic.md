@@ -794,3 +794,60 @@ Output:
 > The rectangle is not a square  
 
 ## Strings 
+Strings are a sequence of characters. There are 2 kinds of strings in Rust: `String` and `&str`. `String` is a growable, heap-allocated data structure. `&str` is a string slice, which is a reference to a string. 
+
+### Methods for `String`
+- To create a string, use the `String::from()` function.
+- To access a character of a string, use the `[index]` syntax. 
+- To get the length of a string, use the `.len()` method. 
+- To get the capacity of a string, use the `.capacity()` method. 
+- To check if a string is empty, use the `.is_empty()` method. 
+- To check if a string contains a substring, use the `.contains()` method. 
+- To replace a substring in a string, use the `.replace()` method. 
+- To split a string into a vector, use the `.split()` method. 
+- To split a string into a vector by whitespace, use the `.split_whitespace()` method. 
+- To loop through the characters of a string, use the `.chars()` method. 
+- To loop through the words of a string, use the `.words()` method. 
+- To loop through the lines of a string, use the `.lines()` method. 
+- To concatenate two strings, use the `+` operator. 
+
+```rust
+fn main(){
+    let my_string = String::from("Hello World"); // my_string is a String
+
+    // access the first character of the string
+    println!("The first character is {}", my_string[0]); // The first character is H
+
+    // get the length of the string
+    println!("The length of the string is {}", my_string.len()); // The length of the string is 11
+
+    // if the string is empty
+    println!("The string is empty: {}", my_string.is_empty()); // The string is empty: false
+
+    for token in my_string.split_whitespace(){ // split the string into a vector by whitespace, and loop through the vector
+        println!("{}", token); // Hello, World
+    }
+
+    // if the string contains a substring
+    println!("The string contains 'World': {}", my_string.contains("World")); // The string contains 'World': true
+
+    // replace a substring in a string
+    println!("Replace 'World' with 'There': {}", my_string.replace("World", "There")); // Replace 'World' with 'There': Hello There
+
+    // Append to a string
+    my_string.push_str("!!!"); // Hello World!!!
+
+    println!("{}", my_string); // Hello World!!!
+}
+```
+
+Output:
+> The first character is H  
+> The length of the string is 11  
+> The string is empty: false  
+> Hello  
+> World  
+> The string contains 'World': true  
+> Replace 'World' with 'There': Hello There  
+> Hello World!!!  
+

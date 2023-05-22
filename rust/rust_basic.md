@@ -706,3 +706,44 @@ fn print_color(color: Color){
     println!("The color is RGB({}, {}, {})", color.red, color.green, color.blue); // The color is RGB(0, 0, 255)
 }
 ```
+
+## Arrays
+A sequence of elements of the same type. To create an array, use the `[value, ...]` syntax. To access an element of an array, use the `[index]` syntax. 
+
+```rust
+fn main(){
+    let numbers = [1, 2, 3, 4, 5]; // numbers is an array of type i32
+
+    // access the first element of the array
+    println!("The first number is {}", numbers[0]); // The first number is 1
+
+    // loop through the array
+    for n in numbers.iter(){
+        println!("The number is {}", n); // The number is 1, The number is 2, The number is 3, The number is 4, The number is 5
+    }
+
+    // loop through the array with index
+    for i in 0..numbers.len(){
+        println!("The number is {}", numbers[i]); // The number is 1, The number is 2, The number is 3, The number is 4, The number is 5
+    }
+
+    // specify the type of the array
+    let characters: [char; 5] = ['a', 'b', 'c', 'd', 'e']; // characters is an array of type char
+    println!("The first character is {}", characters[0]); // The first character is a
+}
+```
+
+Output:
+> The first number is 1  
+> The number is 1  
+> The number is 2  
+> The number is 3  
+> The number is 4  
+> The number is 5  
+> The number is 1  
+> The number is 2  
+> The number is 3  
+> The number is 4  
+> The number is 5  
+> The first character is a  
+

@@ -851,3 +851,7 @@ Output:
 > Replace 'World' with 'There': Hello There  
 > Hello World!!!  
 
+## Implementing Traits
+Similar to interfaces in other languages, traits are used to define shared behavior in an abstract way. Traits are similar to structs, but they cannot have fields. Traits are used to define shared behavior in an abstract way. Traits are similar to interfaces in other languages. Traits are used to define shared behavior in an abstract way. Traits are similar to interfaces in other languages. Traits are used to define shared behavior in an abstract way. Traits are similar to interfaces in other languages. Traits are used to define shared behavior in an abstract way. Traits are similar to interfaces in other languages. Traits are used to define shared behavior in an abstract way. Traits are similar to interfaces in other languages. Traits are used to define shared behavior in an abstract way. Traits are similar to interfaces in other languages. Traits are used to define shared behavior in an abstract way. Traits are similar to interfaces in other languages. Traits are used to define shared behavior in an abstract way. Traits are similar to interfaces in other languages. Traits are used to define shared behavior in an abstract way. 
+<!-- 
+```rust -->

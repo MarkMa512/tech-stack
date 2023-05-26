@@ -98,7 +98,6 @@ An integer is a number without a fractional component. Rust has **signed** and *
 | 32-bit  | `i32`  | `u32`    | 0 to 4.294967295 billion                | -2.147 billion to 2.147 billion           | `int`                                     |
 | 64-bit  | `i64`  | `u64`    | 0 to 18,446.74 billion                  | -9,223.37 billion to 9,223.37 billion     | `long`                                    |
 | 128-bit | `i128` | `u128`   | 0 to 340,282.37 billion                 | -170,141.18 billion to 170,141.18 billion | `BigInteger`                              |
-| arch    | `isize`| `usize`  | depends on the computer architecture    | depends on the computer architecture      | `int` (32-bit) or `long` (64-bit)         |
 
 The default integer type is `i32`. The default integer type can be changed by adding a type annotation.
 
@@ -852,6 +851,28 @@ Output:
 > Hello World!!!  
 
 ## Implementing Traits
-Similar to interfaces in other languages, traits are used to define shared behavior in an abstract way. Traits are similar to structs, but they cannot have fields. Traits are used to define shared behavior in an abstract way. Traits are similar to interfaces in other languages. Traits are used to define shared behavior in an abstract way. Traits are similar to interfaces in other languages. Traits are used to define shared behavior in an abstract way. Traits are similar to interfaces in other languages. Traits are used to define shared behavior in an abstract way. Traits are similar to interfaces in other languages. Traits are used to define shared behavior in an abstract way. Traits are similar to interfaces in other languages. Traits are used to define shared behavior in an abstract way. Traits are similar to interfaces in other languages. Traits are used to define shared behavior in an abstract way. Traits are similar to interfaces in other languages. Traits are used to define shared behavior in an abstract way. Traits are similar to interfaces in other languages. Traits are used to define shared behavior in an abstract way. 
-<!-- 
-```rust -->
+Similar to interfaces in other languages, traits are used to define shared behavior in an abstract way. 
+- Traits are similar to structs, but they cannot have fields. 
+
+```rust
+struct Person{
+    name: String, 
+    age: u8
+
+}
+
+impl ToString for Person{ // we use the impl keyword to implement the ToString trait for the Person struct
+    fn to_string(&self)->String{
+        return format!("My name is {} and I am {} years old", self.name, self.age);
+    }
+}
+
+fn main(){
+    let person = Person{name: String::from("John"), age: 20};
+    println!("{}", person.to_string()); // My name is John and I am 20 years old
+}
+```
+
+### VS Impl Keyword
+- The `impl` keyword is used to implement methods for a struct.
+- The `impl` keyword is also used to implement traits for a struct. 

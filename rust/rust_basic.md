@@ -925,4 +925,19 @@ Output:
 > element 4 is 6       
 
 
+## 25. Read a File 
+```rust
+use std::fs::File; // import the File struct from the fs module 
+use std::io::prelude::*; // import the prelude module from the io module, which contains the Read trait, allowing us to read from a file
 
+fn main(){
+    let mut file = File::open("info.txt").expect("Could not open file"); // open the file, and return an error if it does not exist 
+    let mut contents = String::new(); // create a new empty string to store the contents of the file 
+
+    file.read_to_string(&mut contents).expect("Could not read file"); // read the file, and return an error if it cannot be read
+        // the read_to_string method takes a mutable reference to a string as an argument, and returns a Result object
+        // the Result object contains either the contents of the file, or an error message
+        // contents is a mutable reference to a string, so we can modify it without taking ownership of it 
+    
+    println!("File contents:\n\n{}", contents); // print the contents of the file
+}

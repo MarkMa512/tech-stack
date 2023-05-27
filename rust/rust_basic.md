@@ -576,8 +576,16 @@ Shadowing is the process of re-declaring a variable. To shadow a variable, use t
 
 
 ## References
-A reference is a pointer to a variable. To create a reference, use the `&` operator. To dereference a reference, use the `*` operator. It is important to note that a reference is immutable by default. To make a reference mutable, use the `mut` keyword. It is another way to pass a variable to a function without moving the variable. 
+A reference is a pointer to a variable. 
 
+- To create a reference, use the `&` operator. 
+- To dereference a reference, use the `*` operator. 
+
+It is important to note that a reference is immutable by default. 
+
+- To make a reference mutable, use the `mut` keyword. 
+
+It is a way to pass a variable to a function without moving the variable. 
 
 ```rust
 fn main(){
@@ -926,6 +934,8 @@ Output:
 
 
 ## 25. Read a File 
+
+
 ```rust
 use std::fs::File; // import the File struct from the fs module 
 use std::io::prelude::*; // import the prelude module from the io module, which contains the Read trait, allowing us to read from a file
@@ -941,3 +951,17 @@ fn main(){
     
     println!("File contents:\n\n{}", contents); // print the contents of the file
 }
+```
+
+Alternatively, we can use the `fs::read_to_string()` function to read the contents of a file into a string. 
+
+```rust
+use std::fs; // import the fs module
+
+fn main(){
+    let contents = fs::read_to_string("info.txt").expect("Could not read file"); // read the contents of the file into a string, and return an error if it cannot be read
+    // contents is of type String, so we take ownership of it
+    println!("File contents:\n\n{}", contents); // print the contents of the file
+}
+```
+

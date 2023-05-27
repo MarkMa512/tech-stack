@@ -609,6 +609,8 @@ fn main(){
 ## Structs
 `Struct` is a custom data type that allows you to group named fields of different types into a single type. To create a struct, use the `struct` keyword. To access a field of a struct, use the `.` operator. To create an instance of a struct, use the `struct_name { field_name: value, ... }` syntax. 
 
+Note: The `struct` keyword is used to create a struct, and the `struct_name { field_name: value, ... }` syntax is used to create an instance of a struct. Also, when defining or instantiating a struct, the fields must be separated by commas. 
+
 ```rust
 struct Color{
     red: u8, // u8: unsigned 8-bit integer, 0 - 255 
@@ -858,7 +860,6 @@ Similar to interfaces in other languages, traits are used to define shared behav
 struct Person{
     name: String, 
     age: u8
-
 }
 
 impl ToString for Person{ // we use the impl keyword to implement the ToString trait for the Person struct
@@ -876,3 +877,52 @@ fn main(){
 ### VS Impl Keyword
 - The `impl` keyword is used to implement methods for a struct.
 - The `impl` keyword is also used to implement traits for a struct. 
+
+## Vectors 
+Vectors are growable arrays. It is possible to create a vector with a fixed size, but it is more common to use a vector with a dynamic size. It is like a list in Python, or an ArrayList in Java. 
+
+- To access an element of a vector, use the `[index]` syntax.  
+- To loop through the elements of a vector, use the `.iter()` method. 
+- To add an element to the end of a vector, use the `.push()` method.   
+- To remove an element from a vector, use the `.remove(index)` method.  
+
+
+```rust 
+fn main(){
+
+    // create a vector with a fixed size
+    let fixed_vector: Vec<i32> = Vec::with_capacity(10); // fixed_vector is a vector of i32 with a capacity of 10
+    println!("{:?}", fixed_vector); // []
+
+    // create a vector with a dynamic size, using the vec! macro, which is similar to the vec() function in Python  
+    let mut my_vector = vec![1, 2, 3, 4, 5]; // my_vector is a vector of i32
+    my_vector.push(6); // add 6 to the end of the vector
+    my_vector.remove(0); // remove the first element of the vector
+    println!("{:?}", my_vector); // [2, 3, 4, 5, 6] 
+
+    for i in my_vector.iter(){ // loop through the vector
+        println!("{}", i); // 2, 3, 4, 5, 6
+    }
+
+    for i in 0..my_vector.len(){ // loop through the vector
+        println!("element {} is {}",i,  my_vector[i]); // element 0 is 2, element 1 is 3, element 2 is 4, element 3 is 5, element 4 is 6
+    }
+}
+```
+
+Output:
+> [] 
+> [2, 3, 4, 5, 6]   
+> 2  
+> 3  
+> 4     
+> 5     
+> 6 
+> element 0 is 2    
+> element 1 is 3    
+> element 2 is 4    
+> element 3 is 5    
+> element 4 is 6       
+
+
+

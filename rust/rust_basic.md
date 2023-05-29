@@ -935,7 +935,6 @@ Output:
 
 ## 25. Read a File 
 
-
 ```rust
 use std::fs::File; // import the File struct from the fs module 
 use std::io::prelude::*; // import the prelude module from the io module, which contains the Read trait, allowing us to read from a file
@@ -965,3 +964,23 @@ fn main(){
 }
 ```
 
+## 26. Command Line Arguments 
+
+```rust
+use std::env; // import the env module 
+
+fn main(){
+    // create a vector of command line arguments 
+
+    let args: Vec<String> = env::args().collect(); // args is a vector of String
+
+    for arg in args.iter(){ // loop through the vector
+        println!("{}", arg); // print each argument
+    }
+}
+```
+
+If no arguments are passed to the program, the first argument will be the path to the executable. 
+
+Output:
+> ./main 

@@ -984,3 +984,16 @@ If no arguments are passed to the program, the first argument will be the path t
 
 Output:
 > ./main 
+
+## 27. Write to a File 
+
+```rust
+use std::fs::File; // import the File struct from the fs module
+use std::io::prelude::*; // import the prelude module from the io module, which contains the Write trait, allowing us to write to a file
+
+fn main(){
+    let mut file = File::create("info.txt").expect("Could not create file"); // create a new file, and return an error if it cannot be created
+    file.write_all(b"Welcome to Rust!").expect("Could not write to file"); // write to the file, and return an error if it cannot be written to
+        // the write_all method takes a byte string as an argument, and returns a Result object
+        // the Result object contains either the number of bytes written, or an error message
+}

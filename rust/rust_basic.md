@@ -1,5 +1,9 @@
 # [Rust Programming Tutorial](https://www.youtube.com/watch?v=vOMJlQ5B-M0&list=PLVvjrrRCBy2JSHf9tGxGKJ-bYAN_uDCUL)
 
+## Table of Contents
+
+
+
 ## Hello World
 
 Rust file extension is `.rs`. All rust programs begin with the main function. 
@@ -997,3 +1001,54 @@ fn main(){
         // the write_all method takes a byte string as an argument, and returns a Result object
         // the Result object contains either the number of bytes written, or an error message
 }
+```
+
+Alternatively, we can use the `fs::write()` function to write to a file. 
+
+```rust
+use std::fs; // import the fs module
+
+fn main(){
+    fs::write("info.txt", "Welcome to Rust!").expect("Could not write to file"); // write to the file, and return an error if it cannot be written to
+}
+```
+
+## 28. Define Traits 
+A set of methods that a type must implement in order to be able to use the trait. Traits are similar to interfaces in other languages. They are used to define shared behavior in an abstract way. 
+
+```rust
+struct Person{
+    name: String, 
+    age: u8
+}
+
+trait HasVoiceBox{ // define a trait called HasVoiceBox
+    fn speak(&self); // define a method called speak, which takes a reference to self as an argument
+    fn can_speak(&self)->bool; // define a method called can_speak, which takes a reference to self as an argument, and returns a boolean
+}
+
+impl HasVoiceBox for Person{ // implement the HasVoiceBox trait for the Person struct
+    fn speak(&self){ // define the speak method
+        println!("Hello, my name is {}", self.name); // print the name of the person
+    }
+
+    fn can_speak(&self)->bool{ // define the can_speak method
+        if self.age > 0{ // if the person is older than 0
+            return true; // return true
+        } else { // otherwise
+            return false; // return false
+        }
+    }
+}
+
+fn main(){
+    let person = Person{name: String::from("Bob"), age: 41}; // create a new Person object
+    person.speak(); // call the speak method
+    println!("Can {} speak? {}", person.name, person.can_speak()); // call the can_speak method
+}
+```
+
+Output:
+> Hello, my name is Bob  
+> Can Bob speak? true   
+

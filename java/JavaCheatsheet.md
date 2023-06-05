@@ -157,6 +157,7 @@ public class Team {
 ## Java Data Types
 
 ### Primitive Data Types
+There are in total 8 primitive data types in Java. 
 
 | Data Type | Size | Description |
 | --- | --- | --- |
@@ -175,5 +176,93 @@ Non-primitive data types are called reference types because they refer to object
 Common reference types include: 
 * String
 * Array
+* ArrayList
+* HashMap 
+
+```java
+int[] myArray = new int[5]; // Creating an array object
+
+System.out.println(myArray instanceof Object); // Output: true
+System.out.println(myArray.getClass().getName()); // Output: [I (representing the array of int)
+
+```
 
 ## Java Operators
+
+## Inheritance and Polymorphism  
+
+### Inheritance
+- Organizes object in a top-down fashion from the most general to the most specific. 
+- `is-a` relationship 
+
+- Eg: A human is a mammal
+    ```java
+    public class Mammal {
+        // ...
+    }
+
+    public class Human extends Mammal {
+        // ...
+    }
+    ```
+- Keyword: `extends` indicated that the class inherits from another class; Human is a subclass of Mammal, while Mammal is a superclass of Human. 
+
+- Benefits of Inheritance: 
+    - **Code reusability**
+    - Extensibility
+    - Maintainability
+
+#### Inheritance: Constructors 
+- Constructors are not inherited, but they can be invoked from the subclass.
+- The keyword `super` is used to invoke the superclass constructor. The super statement must be the first statement in the subclass constructor. 
+- Eg: 
+```java
+public class Employee {
+    private String name;
+    private String address;
+    private int number;
+
+    public Employee(String name, String address, int number) {
+        System.out.println("Constructing an Employee");
+        this.name = name;
+        this.address = address;
+        this.number = number;
+    }
+}
+
+public class Manager extends Employee{
+    private String department;
+
+    public Manager(String name, String address, int number, String department) {
+        super(name, address, number);
+        this.department = department;
+    }
+}
+``` 
+
+- If no super statement is provided, the compiler will automatically insert a call to the no-argument constructor of the superclass. If the superclass does not have a no-argument constructor, the compiler will generate an error.
+- Eg: 
+```java
+public class Animal {
+    private String name;
+
+    public Animal(String name) {
+        this.name = name;
+    }
+}
+
+public class Dog extends Animal {
+    private String breed;
+
+    public Dog(String breed) {
+        // super(); // Compiler will automatically insert this statement
+        this.breed = breed;
+    }
+}
+```
+
+### Abstract Class
+
+### Interface
+
+### Polymorphism 

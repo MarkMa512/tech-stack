@@ -224,8 +224,206 @@ public class Dog extends Animal {
 ```
 
 ### Abstract Class
+- An abstract class is a class that cannot be instantiated.
+- A generic base class that provides partial implementation of a class, while allowing subclasses to provide concrete implementation of some methods. 
+
+#### Abstract Method
+- An abstract method is a method that does not have a body, and must be implemented by the subclass. 
+
+- Eg: 
+```java
+public abstract class Animal {
+    public abstract void makeSound();
+}
+
+public class Cat extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Cat meows");
+    }
+}
+```
+- **If a class contains an abstract method, the class must be declared abstract.**
+
+#### Create Subclass from Abstract Class 
+- `Extends` the abstract class and implement all abstract methods. 
+
+- Eg: 
+```java
+public abstract class Animal {
+    public abstract void makeSound();
+}
+
+public class Cat extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Cat meows");
+    }
+}
+```
 
 ### Interface
+- An interface is a collection of abstract methods and constants that form a common set of base rules/specifications for those classes that implement it. 
+- A subclass can implement multiple interfaces, but can only extend one class. Java only supports multiple inheritance through interfaces, not classes. This is to address the diamond problem. 
+- `implements` keyword is used to indicate that a class implements an interface. 
+- As compared to abstract classes, interfaces are more flexible and can be used to implement multiple inheritance. Interfaces are also used to achieve loose coupling. 
+
+- Eg: 
+```java
+public interface Animal {
+    public void makeSound();
+}
+
+public class Cat implements Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Cat meows");
+    }
+}
+```
+
+## Inherited Methods and Overriding
+- A subclass inherits all the members (fields, methods, and nested classes) from its superclass.
+- All Java classes are subclasses of the Object class. 
+- The class Object specifies the behavior of all objects, and is the root of the class hierarchy.
+    - `toString()` method: returns a string representation of the object.
+        - Provides a meaningful string representation of the object for debugging purposes.
+    - `equals()` method: compares two objects for equality and returns a boolean. 
+    - `hashCode()` method: returns a hash code value for the object.
+    - `getClass()` method: returns the runtime class of an object.
+    - `clone()` method: creates and returns a copy of the object.
+    - `finalize()` method: called by the garbage collector on an object when garbage collection determines that there are no more references to the object.
+
+### Instanceof Operator
+- The `instanceof` operator is used to test if an object is an instance of a class, subclass, or interface.  
+- Eg: 
+```java
+public class Animal {
+    // ...
+}
+
+public class Cat extends Animal {
+    // ...
+}
+
+public static void main(String[] args) {
+    Animal animal = new Animal();
+    Cat cat = new Cat();
+
+    System.out.println(animal instanceof Animal); // true
+    System.out.println(cat instanceof Animal); // true
+    System.out.println(animal instanceof Cat); // false
+}
+```
+
+### equals() Method 
+- By default, the `equals()` method compares two objects by comparing their memory references. 
+- However, it is often necessary to compare objects based on their content, not their reference. Hence, the `equals()` method is overridden to compare the content of the object.
+- It determines whether its parameter is an object that is equivalent to the invoking object.
+
+- Eg: without overriding equals() method 
+```java
+public class Animal {
+    private String name;
+
+    public Animal(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+
+public static void main(String[] args) {
+    Animal animal1 = new Animal("Cat");
+    Animal animal2 = new Animal("Cat");
+
+    System.out.println(animal1.equals(animal2)); // false
+}
+```
+
+- Eg: with overriding equals() method and comparing the content of the object
+```java
+public class Animal {
+    private String name;
+
+    public Animal(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Animal) { // check if obj is an instance of Animal
+            Animal animal = (Animal) obj; // cast obj to Animal
+            return this.name.equals(animal.getName()); // compare the content of the object
+        }
+        return false;
+    }
+}
+```
+
+#### equals() vs ==
+- `equals()` method compares the content of the object, while `==` compares the reference of the object.
+- `equals()` method is defined in the Object class, while `==` is defined in the primitive data types and Object class.
+- `equals()` method can be overridden, while `==` cannot be overridden.
+
+#### Guidelines for Overriding equals() Method
+1. Reflexive: `x.equals(x)` must return true.
+2. Symmetric: `x.equals(y)` must return true if and only if `y.equals(x)` returns true.
+3. Transitive: if `x.equals(y)` returns true and `y.equals(z)` returns true, then `x.equals(z)` must return true.
+4. Consistent: multiple invocations of `x.equals(y)` must return the same value, provided no information used in `equals()` is modified.
+5. Physicality: for any non-null reference value `x`, `x.equals(null)` must return false.
+
+#### Why Override equals() Method?
+- To compare the content of the object, not the reference.
+
+### hashCode() Method
+- The `hashCode()` method returns a hash code value for the object.
+- The hash code value is used in hashing based collections such as HashMap, HashSet, and HashTable.
+- The `hashCode()` method is defined in the Object class and can be overridden.
+- If two objects are equal according to the `equals()` method, then calling the `hashCode()` method on each of the two objects must produce the same integer result.
+- If two objects are unequal according to the `equals()` method, it is not required that calling the `hashCode()` method on each of the two objects must produce distinct integer results. However, the programmer should be aware that producing distinct integer results for unequal objects may improve the performance of hashing based collections.
+
+
+### Overriding 
+- A subclass can override a method of the superclass.
+- An instance method in a subclass with the same **signature** (*name* and *parameter* types) and **return type** as an instance method in the superclass overrides the superclass's method.
+- The `@Override` annotation is used to indicate that a method overrides another method. If the method does not override a method in the superclass, the compiler will generate an error.
+
+- Eg: 
+```java
+public class Animal {
+    public void makeSound() {
+        System.out.println("Animal makes sound");
+    }
+}
+
+public class Cat extends Animal {
+    @Override
+    public void makeSound() {
+        System.out.println("Cat meows");
+    }
+}
+
+public static void main(String[] args) {
+    Animal animal = new Animal();
+    animal.makeSound(); // Animal makes sound
+
+    Cat cat = new Cat();
+    cat.makeSound(); // Cat meows
+}
+```
+Output: 
+```
+Animal makes sound
+Cat meows
+```
+
 
 ### Polymorphism 
 

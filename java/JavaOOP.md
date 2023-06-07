@@ -597,4 +597,16 @@ Output:
 | Usage 1 | Use when you do not have access to the source code of the class whose objects you want to sort | Use when you have access to the source code of the class whose objects you want to sort | 
 | Usage 2 | Use when you want to sort objects of a class in different ways | Use when you want to sort objects of a class in only one way |
 
+## Encapsulation
+
+### Access Modifiers
+- Access modifiers are keywords that set the accessibility of classes, interfaces, methods, and fields. 
+
+| Modifier | Same Class | Same Package | Subclass | Universe |
+| --- | --- | --- | --- | --- |
+| private | Yes | **No** | **No** | **No** |
+| default | Yes | Yes | **No** | **No** |
+| protected | Yes | Yes | Yes | **No** |
+| public | Yes | Yes | Yes | Yes |
+
 

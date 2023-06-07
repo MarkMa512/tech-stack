@@ -1,10 +1,4 @@
 # Java OOP 
-
-## Table of Contents
-
-
-## Object-Oriented Programming (OOP)
-
 Object-oriented programming (OOP) is a programming paradigm that uses objects and classes.
 
 ### Object
@@ -424,8 +418,29 @@ Animal makes sound
 Cat meows
 ```
 
-
 ### Polymorphism 
+
+#### Syntactic Polymorphism 
+- Syntactic polymorphism is the ability of a language to execute different operations or functions depending on the data types of the operands or arguments. 
+- It is achieved through method overloading and method overriding. 
+- Eg: 
+```java
+public static void main(String[] args) {
+    System.out.println(1 + 2); // 3, addition is performed as the operands are integers 
+    System.out.println("1" + "2"); // 12, concatenation is performed as the operands are strings 
+
+    int a, b, c; 
+    double x, y, z; 
+
+    c = Math.max(a, b); // max() method returns the maximum of two integers
+    z = Math.max(x, y); // max() method returns the maximum of two doubles 
+}
+```
+
+#### Pure Polymorphism 
+- Pure polymorphism is the ability of a language to execute different operations or functions depending on the data types of the operands or arguments.
+- It is achieved through method overriding.
+- The method to be executed is determined at runtime based on the actual object type, not the reference type. This is also known as dynamic binding or late binding. 
 
 ### Class VS Abstract Class VS Interface
 
@@ -466,3 +481,120 @@ In the above example, the MyInterface interface declares an abstract method abst
 A static method is a method defined within an interface that includes a method body, similar to a static method defined within a class. Static methods in interfaces are useful for providing utility methods or helper functions that are related to the interface but do not require an instance of a class. They can be accessed and used by all classes that implement the interface.
 
 It's important to note that static methods in interfaces cannot be overridden or inherited by implementing classes. They are solely associated with the interface itself and are not part of the implementation contract for classes. 
+
+## Useful Interfaces: Comparable 
+- The Comparable interface is used to define the natural ordering of objects. 
+- The Comparable interface has a single method, compareTo(), which compares the current object with another object. 
+- Comparable interface is used to sort a collection of objects of a user-defined class. 
+- The compareTo() method returns a negative integer, zero, or a positive integer if the current object is less than, equal to, or greater than the specified object respectively.
+
+Step 1: Implement the Comparable interface in the class whose objects need to be sorted. 
+Step 2: Override the compareTo() method in the class.
+
+```java
+public class Student implements Comparable<Student> {
+    private String name;
+    private int age;
+
+    public Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
+
+    @Override
+    public String toString() {
+        return "Student [name=" + this.name + ", age=" + this.age + "]";
+    }
+
+    @Override
+    public int compareTo(Student student) {
+        return this.name.compareTo(student.getName()); // sort by name using compareTo() method from String class 
+        // here, we can also sort by age by using the following code
+        // return this.age - student.getAge();
+    }
+}
+```
+Step 3: Use the `Collections.sort()` method to sort the collection of objects. 
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class studentTest {
+    public static void main(String[] args) {
+        ArrayList<Student> students = new ArrayList<>();
+        students.add(new Student("Alice", 20));
+        students.add(new Student("Bob", 18));
+        students.add(new Student("Cindy", 19));
+
+        Collections.sort(students);
+        System.out.println(students);
+    }
+}
+```
+
+Output: 
+> [Student [name=Alice, age=20], Student [name=Bob, age=18], Student [name=Cindy, age=19]]  
+
+## Useful Interfaces: Comparator
+- The Comparator interface is used to sort a collection of objects of a user-defined class.
+- The Comparator interface is used to define the custom ordering of objects.
+- The Comparator interface has a single method, compare(), which compares two objects.
+- The compare() method returns a negative integer, zero, or a positive integer if the first object is less than, equal to, or greater than the second object respectively.
+
+Step 1: Implement the Comparator interface in a class.
+Step 2: Override the compare() method in the class.
+
+```java
+import java.util.Comparator;
+
+public class StudentComparator implements Comparator<Student> {
+    @Override
+    public int compare(Student student1, Student student2) {
+        return student1.getAge() - student2.getAge();
+    }
+}
+```
+Setp 3: Use the `Collections.sort()` method to sort the collection of objects. 
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class studentTest {
+    public static void main(String[] args) {
+        ArrayList<Student> students = new ArrayList<>();
+        students.add(new Student("Alice", 20));
+        students.add(new Student("Bob", 18));
+        students.add(new Student("Cindy", 19));
+
+        Collections.sort(students, new StudentComparator());
+        System.out.println(students);
+    }
+}
+```
+
+Output:
+> [Student [name=Bob, age=18], Student [name=Cindy, age=19], Student [name=Alice, age=20]]  
+
+## Comparator VS Comparable
+
+| Feature | Comparator | Comparable |
+| --- | --- | --- |
+| Package | java.util.Comparator | java.lang.Comparable |
+| Interface | Separate interface | Built-in interface in the Object class | 
+| Purpose | To define **custom** ordering of objects | To define **natural** ordering of objects |
+| Multiple sorting | **Yes**, multiple comparators can be created for an object | **No**, only *one* natural order is possible for an object | 
+| External sorting | Objects do not need to implement the Comparator interface | Objects need to implement the Comparable interface | 
+| Flexibility | **More** flexible, allows sorting on different criteria for the same object | **Less** flexible, only provides one default natural sorting order | 
+| Encapsulation | **Less** encapsulated, as the sorting logic is in a separate class, cannot directly leverage on private fields | **More** encapsulated, as the sorting logic is in the same class, the comparison can directly leverage on private fields | 
+| Usage 1 | Use when you do not have access to the source code of the class whose objects you want to sort | Use when you have access to the source code of the class whose objects you want to sort | 
+| Usage 2 | Use when you want to sort objects of a class in different ways | Use when you want to sort objects of a class in only one way |
+
+

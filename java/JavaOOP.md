@@ -444,18 +444,18 @@ public static void main(String[] args) {
 
 ### Class VS Abstract Class VS Interface
 
-| Class | Abstract Class | Interface |
-| --- | --- | --- |
-| Can be instantiated | Cannot be instantiated | Cannot be instantiated |
-| Can have instance variables | Can have instance variables | Cannot have instance variables |
-| Can have constructors | Can have constructors | Cannot have constructors |
-| Can have concrete methods | Can have concrete methods | Cannot have concrete methods |
-| Can have abstract methods | Can have abstract methods | Can have abstract methods |
-| Can have static methods | Can have static methods | Can have static methods |
-| Can have static variables | Can have static variables | Can have static variables |
-| Can have final methods | Can have final methods | Can have final methods |
-| Can have final variables | Can have final variables | Can have final variables |
-| Can have private methods | Can have private methods | Cannot have private methods |
+| Features | Class | Abstract Class | Interface |
+| --- | --- | --- | --- |
+| Can be instantiated | Yes | **No** | **No** | 
+| Can have instance variables | Yes | Yes | **No** |
+| Can have constructors | Yes | Yes | **No** |
+| Can have concrete methods | Yes | Yes | **No** |
+| Can have abstract methods | Yes | Yes | Yes |
+| Can have static methods | Yes | Yes | Yes |
+| Can have static variables | Yes | Yes | Yes |
+| Can have final methods | Yes | Yes | Yes |
+| Can have final variables | Yes | Yes | Yes |
+| Can have private methods | Yes | Yes | Yes |
 
 - Note: 
 1. Priority of inheritance: Class > Abstract Class > Interface

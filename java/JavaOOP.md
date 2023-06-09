@@ -610,3 +610,34 @@ Output:
 | public | Yes | Yes | Yes | Yes |
 
 
+## Packages 
+- A package is a group of related classes and interfaces. 
+- Packages are used to organize code into a single unit and to avoid name conflicts.
+- Packages can be nested within other packages.
+- To access a class or interface in another package, you need to use the import statement. 
+- * represents all classes in the package. 
+- If you want to access a class or interface in another package without using the import statement, you need to use the fully qualified name of the class or interface.
+
+Eg
+File Structure: 
+```
+src
+└── com
+    └── example
+        ├── Main.java
+        └── utils
+            └── Utils.java
+```
+```java
+// Main.java
+package com.example;
+
+import com.example.utils.Utils;
+
+public class Main {
+    public static void main(String[] args) {
+        Utils.printMessage("Hello World!");
+    }
+}
+```
+

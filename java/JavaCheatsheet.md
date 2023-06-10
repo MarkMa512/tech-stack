@@ -94,3 +94,103 @@ System.out.println(myArray.getClass().getName()); // Output: [I (representing th
 | >>= | x >>= 3 | x = x >> 3 |
 | <<= | x <<= 3 | x = x << 3 |
 
+
+## Java Control Flow Statements 
+
+### If-Else Statement
+
+```java
+if (condition) {
+    // code to be executed if condition is true
+} else {
+    // code to be executed if condition is false
+}
+```
+
+### Switch Statement
+Switch statement allows a variable to be tested for equality against a list of values. Each value is called a case, and the variable being switched on is checked for each case.
+
+
+
+```java
+switch (expression) {
+    case x:
+        // code block
+        // case x is executed if expression matches x
+        break; // break out of switch statement, if not included, the next case will be executed 
+    case y:
+        // code block
+        break;
+    default: // optional, default case if no case matches the expression
+        // code block
+}
+```
+
+### While Loop
+
+```java
+while (condition) {
+    // code block to be executed
+}
+```
+
+### Do-While Loop
+
+```java
+do {
+    // code block to be executed
+}   
+while (condition);
+```
+
+### For Loop
+
+```java
+for (statement 1; statement 2; statement 3) {
+    // code block to be executed
+}
+```
+
+### For-Each Loop
+
+```java
+for (type variableName : arrayName) {
+    // code block to be executed
+}
+```
+
+### Break Statement
+
+```java
+for (int i = 0; i < 10; i++) {
+    if (i == 4) {
+        break;
+    }
+    System.out.println(i);
+}
+```
+
+### Continue Statement
+
+```java
+for (int i = 0; i < 10; i++) {
+    if (i == 4) {
+        continue;
+    }
+    System.out.println(i);
+}
+``` 
+
+### Return Statement
+
+```java
+public static void main(String[] args) {
+    int result = sum(10, 20);
+    System.out.println(result);
+}
+
+public static int sum(int a, int b) {
+    return a + b;
+}
+```
+

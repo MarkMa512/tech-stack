@@ -2,9 +2,48 @@
 
 ## Table of Contents
 
+1. [Hello World](#1-hello-world)
+2. [Hello World with Cargo](#2-hello-world-with-cargo)
+3. [Comments](#3-comments)
+4. [Variables](#4-variables)
+5. [Variable Data Types](#5-variable-data-types)
+    1. [Scalar Types](#scalar-types)
+        1. [Integer Types](#integer-types)
+        2. [Floating-Point Types](#floating-point-types)
+        3. [Boolean Type](#boolean-type)
+        4. [Character Type](#character-type)
+    2. [Compound Types](#compound-types)
+        1. [Tuple Type](#tuple-type)
+        2. [Array Type](#array-type)
+6. [Functions](#6-functions)
+    1. [Function Parameters](#function-parameters)
+    2. [Function Return Values](#function-return-values)
+    3. [Function Pointers](#function-pointers)
+7. [Control Flow](#7-control-flow)
+    1. [If Expressions](#if-expressions)
+    2. [Loops](#loops)
+    3. [While Loops](#while-loops)
+    4. [For Loops](#for-loops)
+8. [Ownership](#8-ownership)
+    1. [Ownership Rules](#ownership-rules)
+    2. [References and Borrowing](#references-and-borrowing)
+    3. [Slices](#slices)
+9. [Structs](#9-structs)
+    1. [Struct Methods](#struct-methods)
+    2. [Associated Functions](#associated-functions)
+    3. [Tuple Structs](#tuple-structs)
+    4. [Unit-Like Structs](#unit-like-structs) 
+10. [Enums](#10-enums)
+    1. [Enums with Data](#enums-with-data)
+    2. [Enums with Methods](#enums-with-methods)
+    3. [Enums with C-like Variants](#enums-with-c-like-variants)
+    4. [Enums with Tuple Variants](#enums-with-tuple-variants)
+    5. [Enums with Struct Variants](#enums-with-struct-variants)
 
 
-## Hello World
+
+
+## 1. Hello World
 
 Rust file extension is `.rs`. All rust programs begin with the main function. 
 
@@ -28,7 +67,7 @@ To run the compiled program:
 ./main
 ```
 
-## Hello World with Cargo
+## 2. Hello World with Cargo
 
 Cargo is the Rust package manager. It is used to build, run, and test Rust projects.
 
@@ -50,8 +89,8 @@ This will create a new directory called `hello_world` with the following structu
         }
         ```
 
-    - .gitignore: a file that contains files and directories that git should ignore
-    - Cargo.toml:  a configuration file contains metadata about the project
+    - `.gitignore`: a file that contains files and directories that git should ignore
+    - `Cargo.toml`:  a configuration file contains metadata about the project
         - `[package]` section contains metadata about the project
         - `[dependencies]` section contains the dependencies of the project
 
@@ -62,7 +101,7 @@ cd hello_world
 cargo run
 ```
 
-## Comments 
+## 3. Comments 
 
 ```rust
 // This is a single line comment
@@ -75,19 +114,19 @@ cargo run
     comment */
 ```
 
-## Variables
+## 4. Variables
 Rust is a statically typed language, so the type of all variables must be known at compile time
 
 ```rust
-let x = 5; // immutable variable, the value and type cannot be changed
+let x = 5; // by default, variables are immutable, so the value and type cannot be changed 
 let mut y = 5; // mutable variable, the value can be changed, but the type cannot be changed
 
 x = 10 // invalid
 y = 10 // valid
-y = "hello" // invalid
+y = "hello" // invalid as the type cannot be changed
 ``` 
 
-## Variable Data Types 
+## 5. Variable Data Types 
 
 ### Scalar Types
 A scalar type represents a single value. Rust has four primary scalar types: integers, floating-point numbers, Booleans, and characters.
@@ -144,7 +183,7 @@ Compound types can group multiple values into one type. Rust has two primitive c
 
 
 
-## If Else Statement
+## 6. If Else Statement
 The `if` statement is used to execute code if a condition is true. The `else` statement is used to execute code if a condition is false. The `else if` statement is used to execute code if multiple conditions are true. The `if` statement can be used as an expression. The `if` statement can be used without an `else` statement.
 
 ```rust
@@ -174,7 +213,7 @@ Output:
 | `<=`     | less than or equal to|
 
 
-## Infinite Loop
+## 7. Infinite Loop
 An infinite loop is a loop that runs forever. To create an infinite loop, use the `loop` keyword. To stop an infinite loop, use the `break` keyword. To skip the rest of the iteration and start a new one, use the `continue` keyword.
 
 ```rust
@@ -211,7 +250,7 @@ Output:
 > Hello, world!: 10  
 
 
-## While Loop
+## 8. While Loop
 A while loop is a loop that runs while a condition is true. To create a while loop, use the `while` keyword. To stop a while loop, use the `break` keyword. To skip the rest of the iteration and start a new one, use the `continue` keyword.
 
 ```rust
@@ -247,7 +286,7 @@ Output:
 > Hello, world!: 9  
 > Hello, world!: 10  
 
-## For Loop 
+## 9. For Loop 
 In rust, all for loops in rust are for-each loops, all for loops must use an iterator. An iterator is a trait that allows you to iterate over a sequence of values. To create a for loop, use the `for` keyword. To stop a for loop, use the `break` keyword. To skip the rest of the iteration and start a new one, use the `continue` keyword.
 
 ```rust
@@ -336,7 +375,7 @@ Output:
 > The animal is Bird and its index is 3  
 > The animal is Fish and its index is 4  
 
-## Enum 
+## 10. Enum 
 An enum is a type that can have a fixed set of values. To create an enum, use the `enum` keyword. To create a value of an enum, use the `::` operator. To use an enum, use the `match` keyword.
 
 ```rust
@@ -385,7 +424,7 @@ fn main(){
 }
 ```
 
-## Constants
+## 11. Constants
 A constant is a value declared at global scope that cannot be changed. To create a constant, use the `const` keyword. To use a constant, use the `::` operator.
 
 ```rust
@@ -409,7 +448,7 @@ Output:
 > The number is 3
 > The number is 4
 
-## Tuple
+## 12. Tuple
 A tuple is a collection of values of different types. Tuples have a fixed length. Once declared, the length of a tuple cannot be changed. Tuples are specified with parentheses. The type of a tuple is `(T1, T2, ..., Tn)`, where `T1`, `T2`, ..., `Tn` are the types of the elements of the tuple. Tuple can have at most 12 elements of different types. Tuples are primarily used when you want to return multiple values from a function. 
 
 ```rust
@@ -461,7 +500,7 @@ Output:
 
 
 
-## Functions
+## 13. Functions
 A function is a block of code that can be called. To create a function, use the `fn` keyword. To call a function, use the `()` operator. To return a value from a function, use the `return` keyword.
 
 ```rust
@@ -501,7 +540,7 @@ Output:
 > The sum is 11     
 > The sum is 6  
 
-## Code Blocks
+## 14. Code Blocks
 A code block is a block of code that can be called. To create a code block, use the `{}` operator. To call a code block, use the `()` operator. To return a value from a code block, use the `return` keyword.
 
 ```rust
@@ -525,7 +564,7 @@ Output:
 > The value of x is 10  
 > The value of y is 5  
 
-## Shadowing
+## 15. Shadowing
 Shadowing is the process of re-declaring a variable. To shadow a variable, use the `let` keyword. 
 
 - Without `let` keyword in the code block: 
@@ -579,7 +618,7 @@ Shadowing is the process of re-declaring a variable. To shadow a variable, use t
     > The value of x is 10  
 
 
-## References
+## 16. References
 A reference is a pointer to a variable. 
 
 - To create a reference, use the `&` operator. 
@@ -618,7 +657,7 @@ fn main(){
     - Exactly one mutable reference (`&mut T`).
 
 
-## Structs
+## 17. Structs
 `Struct` is a custom data type that allows you to group named fields of different types into a single type. To create a struct, use the `struct` keyword. To access a field of a struct, use the `.` operator. To create an instance of a struct, use the `struct_name { field_name: value, ... }` syntax. 
 
 Note: The `struct` keyword is used to create a struct, and the `struct_name { field_name: value, ... }` syntax is used to create an instance of a struct. Also, when defining or instantiating a struct, the fields must be separated by commas. 
@@ -641,7 +680,7 @@ fn main(){
 }
 ```
 
-### Tuple Structs
+## 18. Tuple Structs
 Tuple structs are structs that do not have named fields. To create a tuple struct, use the `struct_name(value, ...)` syntax. To access a field of a tuple struct, use the `.` operator. 
 
 ```rust
@@ -656,7 +695,7 @@ fn main{
 Output:
 > The red color is RGB(255, 0, 0)
 
-### Pass by Reference  
+### 19. Pass by Reference  
 When passing a struct to a function, the struct is moved to the function. To keep the variable within the scope, we need to pass by reference. To pass a struct by reference, use the `&` operator. 
 
 ```rust
@@ -699,7 +738,7 @@ fn print_color(color: Color){
 }
 ```
 
-## Arrays
+## 20. Arrays
 A sequence of elements of the same type. To create an array, use the `[value, ...]` syntax. To access an element of an array, use the `[index]` syntax. 
 
 ```rust
@@ -739,7 +778,7 @@ Output:
 > The number is 5  
 > The first character is a  
 
-## Array Type
+### Array Type
 An array is a collection of values of the same type. Arrays have a fixed length. Once declared, the length of an array cannot be changed. Arrays are specified with square brackets. All elements of an array must have the same type. The default array type is `[T; N]`, where `T` is the type of the elements and `N` is the length of the array. Arrays are mutable by default. To make an array immutable, use the `const` keyword. Arrays are placed on the stack.
 
 ```rust
@@ -761,7 +800,7 @@ let e = y[1]; // 2
 let f = y[2]; // 3
 ```
 
-## Impl Keyword (Implement)
+## 21. Impl Keyword (Implement)
 The `impl` keyword is used to implement methods for a struct. This makes it possible to call methods on a struct, and more like an object. 
 
 **note: the last expression in a function is returned by default and has no semicolon at the end**
@@ -806,7 +845,7 @@ Output:
 > The rectangle has a width of 10 and a height of 20  
 > The rectangle is not a square  
 
-## Strings 
+## 22. Strings 
 Strings are a sequence of characters. There are 2 kinds of strings in Rust: `String` and `&str`. `String` is a growable, heap-allocated data structure. `&str` is a string slice, which is a reference to a string. 
 
 ### Methods for `String`
@@ -864,7 +903,7 @@ Output:
 > Replace 'World' with 'There': Hello There  
 > Hello World!!!  
 
-## Implementing Traits
+## 23. Implementing Traits
 Similar to interfaces in other languages, traits are used to define shared behavior in an abstract way. 
 - Traits are similar to structs, but they cannot have fields. 
 
@@ -890,7 +929,7 @@ fn main(){
 - The `impl` keyword is used to implement methods for a struct.
 - The `impl` keyword is also used to implement traits for a struct. 
 
-## Vectors 
+## 24. Vectors 
 Vectors are growable arrays. It is possible to create a vector with a fixed size, but it is more common to use a vector with a dynamic size. It is like a list in Python, or an ArrayList in Java. 
 
 - To access an element of a vector, use the `[index]` syntax.  

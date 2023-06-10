@@ -235,3 +235,82 @@ static void myMethod(int x) {
 }
 ```
 
+## Object, Class, and Interface
+
+### Classes and Objects
+
+```java
+public class MyClass {
+    int x = 5;
+
+    public static void main(String[] args) {
+        MyClass myObj = new MyClass(); // new is used to create an object of MyClass
+        System.out.println(myObj.x); // Outputs 5
+    }
+}
+```
+
+### Abstract Class
+
+```java
+abstract class Animal {
+    public abstract void animalSound();
+    public void sleep() {
+        System.out.println("Zzz");
+    }
+}
+
+class Pig extends Animal {
+    @Override
+    public void animalSound() {
+        System.out.println("The pig says: wee wee");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Pig myPig = new Pig();
+        myPig.animalSound();
+        myPig.sleep();
+    }
+}
+```
+
+Output:
+
+> The pig says: wee wee
+> Zzz
+
+### Interface
+
+```java
+interface Animal {
+    public void animalSound(); // interface method (does not have a body)
+    public void run(); // interface method (does not have a body)
+}
+
+// Pig "implements" the Animal interface
+class Pig implements Animal {
+    public void animalSound() {
+        // The body of animalSound() is provided here
+        System.out.println("The pig says: wee wee");
+    }
+    public void run() {
+        // The body of run() is provided here
+        System.out.println("The pig is running");
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Pig myPig = new Pig();  // Create a Pig object
+        myPig.animalSound();
+        myPig.run();
+    }
+}
+```
+
+Output:
+> The pig says: wee wee
+> The pig is running 
+

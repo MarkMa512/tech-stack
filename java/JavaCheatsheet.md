@@ -314,3 +314,140 @@ Output:
 > The pig says: wee wee
 > The pig is running 
 
+## File I/O
+
+### File Class
+- Provides a system-independent view of hierarchical files and directories 
+- Provides methods for creating, deleting, renaming files and directories
+
+```java
+File file = new File("C:\\Users\\MyName\\filename.txt");
+
+// Check if file exists
+if (file.exists()) {
+    System.out.println("File exists");
+} else {
+    System.out.println("File does not exist");
+}
+```
+
+### Reading Files
+- FileReader class is used to read data from the file
+- BufferedReader class is used to read text from a character-input stream
+- Scanner class is used to get user input, and it is found in the java.util package. It can also read text from a file
+
+Using FileReader and BufferedReader class to read file line by line
+```java
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class ReadFile {
+    public static void main(String[] args) {
+        File file = new File("filename.txt");
+        // Check if file exists
+        if (file.exists()) {
+            System.out.println("File exists");
+        BufferedReader fileLine = new BufferedReader(new FileReader(file));
+        String data;
+        while ((data = fileLine.readLine()) != null) { // read file line by line until there is no more line
+            System.out.println(data);
+        }
+        } else {
+            System.out.println("File does not exist");
+        }
+        fileLine.close(); // close the file
+    }
+}
+```
+
+Using Scanner class to read file line by line
+```java
+import java.io.File;  // Import the File class
+import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.util.Scanner; // Import the Scanner class to read text files
+
+public class ReadFile{
+    public static void main(String[] args){
+        try{
+            File file = new File("filename.txt");
+            Scanner fileLine = new Scanner(file);
+            while (fileLine.hasNextLine()) { // read file line by line until there is no more line
+                String data = fileLine.nextLine();
+                System.out.println(data);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File does not exist");
+        } finally {
+        fileLine.close(); // close the file
+        }
+    }
+}
+```
+- Why use BufferedReader instead of Scanner?
+    - BufferedReader is faster than Scanner because it does not do parsing
+    - BufferedReader has a bigger buffer memory than Scanner
+
+### Writing Files
+- FileWriter class is used to write characters to a file
+- BufferedWriter class is used to write text to a character-output stream
+- PrintStream class is used to write data to another stream 
+
+Using FileWriter and BufferedWriter class to write file line by line
+```java
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class WriteFile{
+    public static void main(String[] args){
+        String filePath = "filename.txt"; 
+
+        try (
+            FileWriter fileWriter = new FileWriter(filePath);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)
+            ) {
+            bufferedWriter.write("Hello World!");
+            bufferedWriter.newLine(); // write a new line character
+            bufferedWriter.write("Hello World Again!");
+        } catch (IOException e) {
+            System.out.println("Unable to write file");
+        }
+
+    }
+}
+```
+
+Output: `filename.txt`
+> Hello World! 
+> Hello World Again! 
+
+Using PrintStream class to write file line by line
+```java
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+
+public class WriteFile{
+    public static void main(String[] args){
+        String filePath = "filename.txt"; 
+
+        try (
+            PrintStream writer = new PrintStream(filePath, true) // true means append to the file instead of overwrite
+            ) {
+            writer.println("Hello World!");
+            writer.println("Hello World Again!");
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write file");
+        }
+
+    }
+}
+```
+
+Why use BufferedWriter instead of PrintStream? 
+- BufferedWriter is faster than PrintStream because it does not do parsing
+- BufferedWriter has a bigger buffer memory than PrintStream
+

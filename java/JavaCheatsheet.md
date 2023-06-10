@@ -194,3 +194,44 @@ public static int sum(int a, int b) {
 }
 ```
 
+## Java Methods 
+
+### Method Declaration
+
+```java
+public static void main(String[] args) {
+    myMethod();
+}
+
+static void myMethod() {
+    System.out.println("Hello World!");
+}
+```
+
+### Method Parameters
+The method parameters are the values that are passed when the method is called. Inside the method, the parameters act as variables.
+
+```java
+public static void main(String[] args) {
+    myMethod("John");
+}
+
+static void myMethod(String name) {
+    System.out.println("Hello " + name);
+}
+```
+
+In Java, variables are passed by value. It means that when a method is called, the parameters are the values of the variables passed into the method.
+
+```java
+public static void main(String[] args) {
+    int x = 10;
+    myMethod(x);
+    System.out.println(x); // Outputs 10
+}
+
+static void myMethod(int x) {
+    x = 25;
+}
+```
+

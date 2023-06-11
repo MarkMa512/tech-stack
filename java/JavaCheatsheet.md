@@ -1,5 +1,35 @@
 # Java Cheat Sheet 
 
+## Contents
+* [Java Data Types](#java-data-types)
+    * [Primitive Data Types](#primitive-data-types)
+    * [Non-Primitive Data Types](#non-primitive-data-types)
+* [Java Operators](#java-operators)
+    * [Arithmetic Operators](#arithmetic-operators)
+    * [Comparison Operators](#comparison-operators)
+    * [Logical Operators](#logical-operators)
+    * [Bitwise Operators](#bitwise-operators)
+    * [Assignment Operators](#assignment-operators)
+* [Java Control Flow Statements](#java-control-flow-statements)
+    * [If-Else Statement](#if-else-statement)
+    * [Switch Statement](#switch-statement)
+    * [While Loop](#while-loop)
+    * [Do-While Loop](#do-while-loop)
+    * [For Loop](#for-loop)
+    * [For-Each Loop](#for-each-loop)
+    * [Break Statement](#break-statement)
+    * [Continue Statement](#continue-statement)
+    * [Return Statement](#return-statement)
+* [Java Methods](#java-methods)
+* [Object, Class, and Interface](#object-class-and-interface)
+    * [Class and Object](#class-and-object)
+    * [Abstract Class](#abstract-class)
+    * [Interface](#interface)
+* [File I/O](#file-io)
+    * [File Class](#file-class)
+    * [Reading Files](#reading-files) 
+    * [Writing Files](#writing-files) 
+
 ## Java Data Types
 
 ### Primitive Data Types

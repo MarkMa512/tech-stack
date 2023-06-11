@@ -1091,3 +1091,55 @@ Output:
 > Hello, my name is Bob  
 > Can Bob speak? true   
 
+## 29. Pattern Matching 
+- Pattern matching is a way to compare a value against a series of patterns and then execute code based on which pattern matches.
+- Equivalent to the switch statement in other languages. 
+- Each pattern is checked in order, and the first matching pattern is used.
+
+```rust
+fn main(){
+    let number = 2; 
+
+    match number {
+        1 => println!("It is one"), // if number is 1, print "It is one" 
+        2 => println!("It is two"), // if number is 2, print "It is two"
+        3 => println!("It is three"), // if number is 3, print "It is three"
+
+        // we can also match multiple patterns 
+        10 | 11 => println!("It is either 10 or 11"), // if number is 10 or 11, print "It is either 10 or 11" 
+
+        // we can also use a range of values
+        12..=19 => println!("It is between 12 and 19"), // if number is between 12 and 19, print "It is between 12 and 19"
+        12..20 => println!("It is between 12 and 19"), // if number is between 12 and 19, print "It is between 12 and 19" 
+
+        _ => println!("It is some other number"), // if number is anything else, print "It is some other number", default case 
+    }
+}
+```
+
+## 30. Reading User Input 
+
+## 31. HashMap 
+
+## 32. Random Numbers
+
+## 33. String Methods
+
+## 34. Multiple Source Files 
+
+## 35. Regular Expressions 
+
+## 36. Modules (Mod keyword) 
+
+## 37. Option (Enum)
+
+## 38. HTTP GET Requests
+
+## 39. Enum Methods 
+
+## 40. Running / Executing Commands (CLI)
+
+## 41. Writing and Running Tests 
+
+## 42. Parsing JSON 
+

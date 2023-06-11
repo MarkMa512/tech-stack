@@ -1,8 +1,9 @@
-# Learning Repository
+# Tech Stack 
 
-This repository contains my notes on different programming languages. I have tried to keep the notes as concise as possible. I have also tried to include links to the resources I have used to learn the language. I believe that the best way to learn a programming language is to write code. So, I have also included some code snippets, as well as some utility programs in this repository. I also believe that learning programming is a continuous process, so I will keep updating this repository as I learn more about the languages.
+This repository contains my notes on different programming languages, softwares, and other technologies.
 
 ## Programming Languages
+- [x] [C](c/readme.md): In progress
 - [x] [Java](java/readme.md): In progress  
 - [x] [Rust](rust/readme.md): In progress  
 - [x] [Python](python/readme.md): In progress  
@@ -13,4 +14,7 @@ This repository contains my notes on different programming languages. I have tri
 - [ ] Kubernetes: To do 
 - [ ] Nginx: To do  
 - [ ] Redis: To do  
+- [ ] Kafka: To do
 
+## System Design 
+- [x] ByteByteGo: In progress 

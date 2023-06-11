@@ -1,6 +1,57 @@
 # Java OOP 
 Object-oriented programming (OOP) is a programming paradigm that uses objects and classes.
 
+## Table of Contents
+* [Java OOP Concepts](#java-oop-concepts)
+    * [Object](#object)
+    * [Class](#class)
+    * [Attribute](#attribute)
+    * [Method](#method)
+    * [Constructor](#constructor)
+    * [Interface](#interface)
+* [OO Concepts](#oo-concepts)
+    * [Abstraction](#abstraction)
+    * [Encapsulation](#encapsulation)
+    * [Modularity](#modularity)
+        * [Functional Decomposition](#functional-decomposition)
+        * [Object-Oriented Decomposition](#object-oriented-decomposition)
+    * [Hierarchy](#hierarchy)
+    * [Inheritance](#inheritance)
+    * [Polymorphism](#polymorphism)
+* [Class Diagram](#class-diagram)
+    * [Relationships](#relationships)
+        * [Navigability](#navigability)
+        * [Multiplicity](#multiplicity)
+        * [Verb Phrases and Association Rules](#verb-phrases-and-association-rules)
+    * [Composition: "is-a-part-of" Relationship](#composition-is-a-part-of-relationship)
+    * [Association: "has-a" Relationship](#association-has-a-relationship)
+        * [Reflexive Association](#reflexive-association)
+    * [Dependency: "uses-a" Relationship](#dependency-uses-a-relationship)
+* [Inheritance and Polymorphism](#inheritance-and-polymorphism)
+    * [Inheritance](#inheritance)
+        * [Inheritance: Constructors](#inheritance-constructors)
+    * [Abstract Classes](#abstract-classes)
+    * [Interfaces](#interfaces)
+* [Inherited Methods and Overriding](#inherited-methods-and-overriding)
+    * [Instanceof Operator](#instanceof-operator)
+    * [equals() Method](#equals-method)
+    * [HashCode() Method](#hashcode-method)
+    * [Overriding](#overriding)
+    * [Polymorphism](#polymorphism)
+        * [Syntactic Polymorphism](#syntactic-polymorphism)
+        * [Pure Polymorphism](#pure-polymorphism)
+        <!-- * [Method Overriding](#method-overriding)
+        * [Method Overloading](#method-overloading)
+        * [Interfaces](#interfaces) -->
+* [Class VS Abstract Class VS Interface](#class-vs-abstract-class-vs-interface)
+* [Useful Interface: Comparable](#useful-interface-comparable)
+* [Useful Interface: Comparator](#useful-interface-comparator)
+<!-- * [Useful Interface: Iterable](#useful-interface-iterable) -->
+* [Comparable VS Comparator](#comparable-vs-comparator) 
+* [Packages](#packages)
+
+## Java OOP Concepts
+
 ### Object
 An object is an instance of a class. It has attributes and methods. All objects of a class have the same attributes and methods, but the values of the attributes may be different. 
 
@@ -442,7 +493,7 @@ public static void main(String[] args) {
 - It is achieved through method overriding.
 - The method to be executed is determined at runtime based on the actual object type, not the reference type. This is also known as dynamic binding or late binding. 
 
-### Class VS Abstract Class VS Interface
+## Class VS Abstract Class VS Interface
 
 | Features | Class | Abstract Class | Interface |
 | --- | --- | --- | --- |

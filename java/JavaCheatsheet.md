@@ -26,7 +26,7 @@
     * [Abstract Class](#abstract-class)
     * [Interface](#interface)
 * [File I/O](#file-io)
-    * [File Class](#file-class)
+    * [File Class](#file-class) 
     * [Reading Files](#reading-files) 
     * [Writing Files](#writing-files) 
 
@@ -480,4 +480,115 @@ public class WriteFile{
 Why use BufferedWriter instead of PrintStream? 
 - BufferedWriter is faster than PrintStream because it does not do parsing
 - BufferedWriter has a bigger buffer memory than PrintStream
+
+## Exception Handling 
+An exception is an event that occurs during the execution of a program that disrupts the normal flow of instructions.
+
+### Try-Catch Control Flow
+
+```java
+try {
+    // Block of code to try
+} catch (Exception e) {
+    // Block of code to handle errors
+} finally {
+    // Block of code to be executed regardless of the try / catch result 
+    // useful for clean up code / close resources
+}
+```
+
+### Common Exceptions
+1. NullPointerException
+    - Thrown when an application attempts to use null in a case where an object is required
+    - Example: 
+    ```java
+    String str = null;
+    System.out.println(str.length());
+    ```
+2. IndexOutOfBoundsException
+    - Thrown to indicate that an index of some sort (such as to an array, to a string, or to a vector) is out of range
+    - Example: 
+    ```java
+    int[] arr = {1, 2, 3};
+    System.out.println(arr[3]);
+    ```
+3. ArithmeticException
+    - Thrown when an exceptional arithmetic condition has occurred
+    - Example: 
+    ```java
+    int a = 10;
+    int b = 0;
+    System.out.println(a/b);
+    ```
+4. InputMismatchException
+    - Thrown by a Scanner to indicate that the token retrieved does not match the pattern for the expected type
+    - Example: 
+    ```java
+    Scanner sc = new Scanner(System.in);
+    int a = sc.nextInt();
+    ```
+
+## Types of Exceptions
+There are two types of exceptions:
+1. Checked exceptions
+    - Checked exceptions are checked at compile-time
+    - Must be handled by try-catch block or throws keyword explicitly
+    - Example: IOException, FileNotFoundException
+2. Unchecked exceptions
+    - Unchecked exceptions are checked at run-time
+    - Cam be compiled without try-catch block
+    - Example: NullPointerException, IndexOutOfBoundsException
+
+`Throwable` class is the superclass of all errors and exceptions in the Java language. Only objects that are instances of this class (or one of its subclasses) are thrown by the Java Virtual Machine or can be thrown by the Java throw statement. Similarly, only this class or one of its subclasses can be the argument type in a catch clause.
+
+Throwable 
+    - Error (unchecked)
+        - OutOfMemoryError
+        - ... 
+    - Exception
+        - RuntimeException (unchecked)
+            - NullPointerException
+            - IndexOutOfBoundsException
+            - ...
+        - IOException (checked)
+
+### Exception Management 
+#### Catching Exceptions
+```java
+try {
+    // Block of code to try
+} catch (Exception e) {
+    // Block of code to handle errors
+}
+```
+#### Throwing Exceptions (Propagating Exceptions)
+An exception can be propagated all the way back to the main method. 
+
+```java
+public void method() throws Exception {
+    // Block of code that may throw an exception
+}
+```
+
+## Custom Exceptions
+Custom exceptions are user-defined exceptions.
+    
+```java
+public class CustomException extends Exception {
+    public CustomException(String message) {
+        super(message); // call the constructor of the parent class Exception with the message parameter
+    }
+}
+
+public class CustomExceptionExample {
+    public static void main(String[] args) {
+        try {
+            throw new CustomException("Custom Exception"); // throw the custom exception. 
+        } catch (CustomException e) {
+            System.out.println(e.getMessage()); // print the message of the custom exception 
+        }
+    }
+}
+
+```
 

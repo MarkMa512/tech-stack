@@ -15,6 +15,7 @@ This repository contains my notes on different programming languages, softwares,
 - [ ] Nginx: To do  
 - [ ] Redis: To do  
 - [ ] Kafka: To do
+- [ ] RabbitMQ: To do 
 
 ## System Design 
 - [x] ByteByteGo: In progress 

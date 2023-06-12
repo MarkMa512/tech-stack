@@ -592,3 +592,75 @@ public class CustomExceptionExample {
 
 ```
 
+## Collection 
+
+### Collection vs Collections
+- Collection is an interface that represents a group of objects known as its elements, it contains methods to operate on the elements such as add, remove, etc.
+- Collections is a class that contains static methods to operate on objects of type Collection, such as sort, binarySearch, etc.
+
+### List
+- List is an ordered collection of elements that allows duplicate elements
+- List is an interface that implements Collection interface
+- ArrayList and LinkedList are two implementations of List interface
+
+#### ArrayList
+- ArrayList is a resizable array implementation of the List interface
+- ArrayList is not thread-safe
+- ArrayList is not synchronized
+
+#### LinkedList
+- LinkedList is a doubly-linked list implementation of the List interface
+- LinkedList is not thread-safe
+- LinkedList is not synchronized
+
+### Set
+- Set is a collection of elements that does not allow duplicate elements
+- Set is an interface that extends Collection interface
+- HashSet, LinkedHashSet and TreeSet are three implementations of Set interface
+
+#### HashSet
+- HashSet is a hash table implementation of the Set interface
+- HashSet is not thread-safe
+- HashSet is not synchronized
+
+#### LinkedHashSet
+- LinkedHashSet is a hash table and linked list implementation of the Set interface
+- LinkedHashSet is not thread-safe
+- LinkedHashSet is not synchronized
+
+#### TreeSet
+- TreeSet is a red-black tree implementation of the Set interface
+- TreeSet is not thread-safe nor synchronized
+
+### Map
+- Map is a collection of key-value pairs
+- Map is an interface that **does not** extends Collection interface 
+- HashMap, LinkedHashMap and TreeMap are three implementations of Map interface
+
+#### HashMap
+- HashMap is a hash table implementation of the Map interface
+- HashMap is not thread-safe nor synchronized
+
+#### LinkedHashMap
+- LinkedHashMap is a hash table and linked list implementation of the Map interface
+- LinkedHashMap is not thread-safe nor synchronized
+
+#### TreeMap
+- TreeMap is a red-black tree implementation of the Map interface
+- TreeMap is not thread-safe nor synchronized
+
+### Queue
+- Queue is a collection of elements that follows the FIFO (First In First Out) principle
+- Queue is an interface that extends Collection interface
+- LinkedList and PriorityQueue are two implementations of Queue interface
+
+#### LinkedList vs ArrayList
+
+| Features | LinkedList | ArrayList | 
+| --- | --- | --- |
+| Data Structure | Doubly-linked list | Resizable array |
+| Access | O(n) | O(1) |
+| Search | O(n) | O(n) |
+| Insertion | O(1) | O(n) |
+| Deletion | O(1) | O(n) |
+| Suitable for | Frequent insertion and deletion | Frequent access | 

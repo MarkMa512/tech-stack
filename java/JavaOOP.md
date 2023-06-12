@@ -326,6 +326,7 @@ public class Cat implements Animal {
     }
 }
 ```
+- `extends` keyword is used to indicate that an interface extends another interface. 
 
 ## Inherited Methods and Overriding
 - A subclass inherits all the members (fields, methods, and nested classes) from its superclass.

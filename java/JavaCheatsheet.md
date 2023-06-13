@@ -608,10 +608,30 @@ public class CustomExceptionExample {
 - ArrayList is not thread-safe
 - ArrayList is not synchronized
 
+Eg. 
+```java
+import java.util.ArrayList;
+
+public class ArrayListExample {
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("Hello"); // add element to the list
+        list.add("World");
+        list.add("Again");
+        list.remove("Again"); // remove element from the list
+        System.out.println(list);
+    }
+}
+```
+
 #### LinkedList
 - LinkedList is a doubly-linked list implementation of the List interface
 - LinkedList is not thread-safe
 - LinkedList is not synchronized
+
+#### Declaring a List
+It is a common practice to declare a List as an interface instead of an implementation of ArrayList or LinkedList. This is because it is easier to change the implementation of the List later on. For a function that has a parameter of type List, it can accept any implementation of List, including ArrayList and LinkedList. This makes the function more flexible. 
+
 
 ### Set
 - Set is a collection of elements that does not allow duplicate elements
@@ -664,3 +684,68 @@ public class CustomExceptionExample {
 | Insertion | O(1) | O(n) |
 | Deletion | O(1) | O(n) |
 | Suitable for | Frequent insertion and deletion | Frequent access | 
+
+### Traversing Collections
+1. Iterator 
+An object that enables you to traverse through a collection and to remove elements from the collection selectively, if desired. 
+
+Eg. 
+```java
+import java.util.ArrayList;
+
+public class IteratorExample {
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("Hello");
+        list.add("World");
+        list.add("Again");
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
+}
+```
+
+Remove elements from the collection selectively
+```java
+import java.util.ArrayList;
+
+public class IteratorExample {
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("Hello");
+        list.add("World");
+        list.add("Again");
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            String str = iterator.next(); // must be called before iterator.remove()
+            if (str.equals("Again")) {
+                iterator.remove();
+            }
+        }
+        System.out.println(list);
+    }
+}
+```
+
+2. For-each loop
+For each object in a collection, in order, do something with the object.
+Cannot remove elements from the collection while traversing.
+
+Eg. 
+```java
+import java.util.ArrayList;
+
+public class ForEachExample {
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("Hello");
+        list.add("World");
+        list.add("Again");
+        for (String str : list) { // for (Type var : collection)
+            System.out.println(str);
+        }
+    }
+}
+```

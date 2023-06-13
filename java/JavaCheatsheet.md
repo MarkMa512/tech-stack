@@ -621,6 +621,9 @@ public class ArrayListExample {
         list.remove("Again"); // remove element from the list
         System.out.println(list);
     }
+    int listSize = list.size(); // get the size of the list 
+    String element = list.get(0); // get the element at index 0
+    list.set(0, "Hi"); // set the element at index 0 to "Hi" 
 }
 ```
 
@@ -660,6 +663,25 @@ It is a common practice to declare a List as an interface instead of an implemen
 #### HashMap
 - HashMap is a hash table implementation of the Map interface
 - HashMap is not thread-safe nor synchronized
+
+Eg. 
+```java
+import java.util.HashMap;
+
+public class HashMapExample {
+    public static void main(String[] args) {
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        map.put("Hello", 1); // add key-value pair to the map
+        map.put("World", 2);
+        map.put("Again", 3);
+        map.remove("Again"); // remove key-value pair from the map
+        System.out.println(map);
+    }
+    int mapSize = map.size(); // get the size of the map 
+    int value = map.get("Hello"); // get the value of the key "Hello"
+    map.put("Hello", 4); // update the value of the key "Hello" to 4
+}
+```
 
 #### LinkedHashMap
 - LinkedHashMap is a hash table and linked list implementation of the Map interface
@@ -749,3 +771,166 @@ public class ForEachExample {
     }
 }
 ```
+
+3. For loop 
+```java
+import java.util.ArrayList;
+
+public class ForLoopExample {
+    public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("Hello");
+        list.add("World");
+        list.add("Again");
+        for (int i = 0; i < list.size(); i++) { // use list.size() to get the size of the list 
+            System.out.println(list.get(i));
+        }
+    }
+}
+```
+
+#### Traversing HashMap 
+It is important to note that the order of elements in a HashMap is not guaranteed, as it is based on the hash codes of the keys. 
+
+1. Using `entrySet()`: 
+    - `entrySet()`: This method provides a set of key-value pairs (Map.Entry objects) from the HashMap. We iterate over each entry and extract the key and value using getKey() and getValue() methods.
+    
+    - `keySet()`: This method returns a set of keys from the HashMap. We iterate over each key and retrieve the corresponding value using the get() method.
+    - Using `values()`: This method returns a collection of values from the HashMap. We iterate over each value directly.
+
+```java 
+import java.util.HashMap;
+import java.util.Map;
+
+public class HashMapLoopExample {
+    public static void main(String[] args) {
+        Map<String, Integer> hashMap = new HashMap<>(); 
+        hashMap.put("Apple", 10);
+        hashMap.put("Banana", 5);
+        hashMap.put("Orange", 8);
+
+        // Using entrySet() to loop through the HashMap
+        for (Map.Entry<String, Integer> entry : hashMap.entrySet()) { // entrySet() returns a Set view of the mappings contained in this map
+            String key = entry.getKey(); // getKey() returns the key corresponding to this entry
+            int value = entry.getValue(); // getValue() returns the value corresponding to this entry
+            System.out.println("Key: " + key + ", Value: " + value);
+        }
+
+        // Using keySet() to loop through the HashMap
+        for (String key : hashMap.keySet()) { // keySet() returns a Set view of the keys contained in this map
+            int value = hashMap.get(key);
+            System.out.println("Key: " + key + ", Value: " + value);
+        }
+
+        // Using values() to loop through the HashMap
+        for (int value : hashMap.values()) { // values() returns a Collection view of the values contained in this map 
+            System.out.println("Value: " + value);
+        }
+    }
+}
+
+```
+
+2. Using Iterator
+
+```java
+import java.util.HashMap; 
+
+public class IteratorHashMapExample{
+    public static void main(String[] args) {
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        hashMap.put("Apple", 10);
+        hashMap.put("Banana", 5);
+        hashMap.put("Orange", 8);
+
+        // Traverse through the key:value pairs concurrently 
+        Iterator<Map.Entry<String, Integer>> iterator = hashMap.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, Integer> entry = iterator.next();
+            String key = entry.getKey();
+            int value = entry.getValue();
+            System.out.println("Key: " + key + ", Value: " + value);
+        }
+
+        Iterator<String> keyIterator = hashMap.keySet().iterator(); // create an iterator from the key set 
+        while (keyIterator.hasNext()){
+            System.out.println(keyIterator.next())
+        }
+
+        Iterator<Integer> valueIterator = hashMap.values().iterator(); // create an iterator from the value set
+        while (valueIterator.hasNext()){
+            System.out.println(valueIterator.next())
+        }
+    }
+}
+```
+
+
+
+
+### Sorting Collections
+
+
+### Question: 
+- Why we must use `Integer` instead of `int` in `ArrayList<Integer>`?
+
+In Java, the `ArrayList` class is a **generic class**, which means it can hold objects of **any type**. When you specify a specific type for `ArrayList`, such as `ArrayList<Integer>`, you are creating an `ArrayList` that can only store objects of type `Integer`. 
+
+The difference between using `Integer` and `int` in `ArrayList<Integer>` is related to the concept of *autoboxing* and the distinction between primitive types and their corresponding wrapper classes in Java.
+
+The `int` type is a primitive type in Java, representing a 32-bit signed integer. On the other hand, `Integer` is a wrapper class that encapsulates an `int` value and provides additional methods and functionality. It allows you to treat an `int` as an object.
+
+In the case of `ArrayList`, it can only hold objects, not primitive types. So when you use `ArrayList<Integer>`, you are telling the compiler that the `ArrayList` will store `Integer` objects. If you try to use `ArrayList<int>`, it will result in a compilation error because `int` is a primitive type and not an object.
+
+However, thanks to autoboxing, Java automatically converts between primitive types and their corresponding wrapper classes when needed. So when you add an `int` value to an `ArrayList<Integer>`, Java automatically converts it to an `Integer` object through autoboxing.
+
+For example:
+
+```java
+ArrayList<Integer> list = new ArrayList<>();
+int value = 10;
+list.add(value); // Autoboxing: int value is automatically converted to Integer object
+```
+
+By using `ArrayList<Integer>`, you can take advantage of the additional methods and functionality provided by the `Integer` class, such as `compareTo()`, `parseInt()`, and so on, which are not available for primitive types like `int`.
+
+In summary, when you use `ArrayList<Integer>`, you are indicating that the `ArrayList` will store `Integer` objects, and Java will handle the conversion between `int` and `Integer` for you through autoboxing.
+
+- Why various collections are not synchronized?
+
+In Java, the various collection classes, such as `ArrayList`, `HashMap`, and `HashSet`, are not synchronized by default for performance reasons. **Synchronization** refers to the process of controlling access to shared resources or data structures to ensure that multiple threads can access them safely without causing inconsistencies or data corruption.
+
+The decision not to make the collections synchronized by default was made to optimize performance. Synchronization introduces overhead in terms of performance and can result in reduced throughput, especially in scenarios where thread safety is not required.
+
+Java's collections framework aims to provide a balance between flexibility and performance. By not synchronizing the collections by default, developers have the flexibility to choose between thread-safe or non-thread-safe collections based on their specific requirements. If thread safety is needed, there are synchronized counterparts available for most collection classes, such as `Vector`, `Hashtable`, and `Collections.synchronizedList()`, `Collections.synchronizedMap()`, etc.
+
+By allowing collections to be unsynchronized by default, Java enables developers to build more efficient and scalable applications in scenarios where concurrent access is not a concern. This approach promotes performance and allows developers to explicitly handle synchronization when necessary, rather than incurring the overhead of synchronization when it's not required.
+
+It's important to note that while the individual collection classes are not synchronized by default, it's still possible to make them thread-safe by synchronizing access to the collection externally using locks or by using the synchronized wrapper classes provided by the `Collections` utility class.
+
+- Why Collections.sort() is not working for LinkedList?
+
+The `Collections.sort()` method in Java is designed to work with collections that implement the `List` interface. However, the `LinkedList` class in Java implements the `List` interface differently from classes like `ArrayList`. 
+
+`LinkedList` internally represents its elements as a doubly-linked list, where each element holds a reference to both the previous and next elements. This data structure allows for efficient insertion and removal of elements at both ends of the list. However, random access to elements in a `LinkedList` is less efficient compared to `ArrayList`, as it requires traversing the list from the beginning or end to reach a specific index.
+
+The `Collections.sort()` method relies on random access to elements for efficient sorting, which is why it is not suitable for sorting a `LinkedList`. The algorithm used by `Collections.sort()` is based on the "quick sort" algorithm, which requires efficient random access to elements. Since `LinkedList` does not provide efficient random access, the sorting operation is not supported.
+
+If you want to sort a `LinkedList`, you have a few options:
+
+1. Convert the `LinkedList` to an `ArrayList` using the constructor that takes a `Collection` as a parameter, sort the `ArrayList`, and then convert it back to a `LinkedList`. Here's an example:
+
+```java
+LinkedList<Integer> linkedList = new LinkedList<>();
+// Add elements to the linkedList
+ArrayList<Integer> arrayList = new ArrayList<>(linkedList);
+Collections.sort(arrayList);
+linkedList = new LinkedList<>(arrayList);
+```
+
+2. Implement your own sorting algorithm specifically tailored for `LinkedList`. Since `LinkedList` supports efficient insertion and removal, you can use algorithms like insertion sort or merge sort that work well with linked lists.
+
+3. Use a third-party library, such as Apache Commons Collections or Guava, which provide sorting methods specifically designed for `LinkedList` or other non-random-access collections.
+
+Remember that sorting a `LinkedList` comes with some performance trade-offs due to its inherent data structure characteristics. If you frequently need to perform sorting operations, consider using an `ArrayList` or another data structure that provides efficient random access and sorting capabilities.
+

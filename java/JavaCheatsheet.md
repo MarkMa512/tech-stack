@@ -870,6 +870,41 @@ public class IteratorHashMapExample{
 
 ### Sorting Collections
 
+Using `Collections.sort()` and `Collection.reverse()` to sort lists. 
+
+Eg. 
+```java 
+import java.util.ArrayList; 
+import java.util.Collections; 
+
+public class ArrayListSortExample{
+    public static void main(String[] args){
+        ArrayList<Integer> numbers = new ArrayList<>(); 
+        numbers.add(5); 
+        numbers.add(2);
+        numbers.add(9); 
+        numbers.add(1); 
+        numbers.add(3);
+
+        System.out.println("Before sorting: " + numbers); 
+
+        Collections.sort(numbers); 
+
+        System.out.println("After sorting: " + numbers); 
+
+        Collections.reverse(numbers); 
+
+        System.out.println("After reversing:" + numbers)
+    }
+}
+```
+
+Output: 
+> Before sorting: [5, 2, 9, 1, 3]  
+> After sorting: [1, 2, 3, 5, 9]  
+> After reversing: [9, 5, 3, 2, 1]
+
+
 
 ### Question: 
 - Why we must use `Integer` instead of `int` in `ArrayList<Integer>`?
@@ -934,3 +969,47 @@ linkedList = new LinkedList<>(arrayList);
 
 Remember that sorting a `LinkedList` comes with some performance trade-offs due to its inherent data structure characteristics. If you frequently need to perform sorting operations, consider using an `ArrayList` or another data structure that provides efficient random access and sorting capabilities.
 
+- Is `Collections.sort()` and `Collections.reverse()` methods pass by reference? 
+
+In Java, all objects, including collections like `ArrayList`, are passed by reference. However, it's important to clarify ***the difference between passing by reference and modifying an object***.
+
+The `Collections.sort()` and `Collections.reverse()` methods do modify the provided `ArrayList` object, but they do not change the reference itself. In other words, they modify the order of elements within the `ArrayList` but do not assign a new object to the reference. 
+
+Here's an example to illustrate this:
+
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class ArrayListExample {
+    public static void main(String[] args) {
+        ArrayList<Integer> numbers = new ArrayList<>();
+        numbers.add(5);
+        numbers.add(2);
+        numbers.add(9);
+        numbers.add(1);
+        numbers.add(3);
+
+        System.out.println("Before sorting: " + numbers);
+
+        // Pass by reference, modifies the original ArrayList
+        Collections.sort(numbers);
+        System.out.println("After sorting: " + numbers);
+
+        // Pass by reference, modifies the original ArrayList
+        Collections.reverse(numbers);
+        System.out.println("After reversing: " + numbers);
+    }
+}
+```
+
+Output:
+```
+Before sorting: [5, 2, 9, 1, 3]
+After sorting: [1, 2, 3, 5, 9]
+After reversing: [9, 5, 3, 2, 1]
+```
+
+As you can see in the example, the `Collections.sort()` method modifies the original `numbers` ArrayList, and the subsequent `Collections.reverse()` method also modifies the same ArrayList. The reference `numbers` remains the same throughout the program.
+
+Therefore, although Java passes objects by reference, it's essential to understand that modifying an object does not change the reference itself.

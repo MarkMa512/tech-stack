@@ -49,6 +49,7 @@ Object-oriented programming (OOP) is a programming paradigm that uses objects an
 <!-- * [Useful Interface: Iterable](#useful-interface-iterable) -->
 * [Comparable VS Comparator](#comparable-vs-comparator) 
 * [Packages](#packages)
+* [Method Overloading](#method-overloading)
 
 ## Java OOP Concepts
 
@@ -754,7 +755,7 @@ public class Calculator {
 
 3. Methods with the same name but with different ordering of parameters (different data types). 
 
-### Method Overloading: iLegal Examples 
+### Method Overloading: illegal Examples 
 
 1. Methods with the same name and same parameter, but different return types. 
 

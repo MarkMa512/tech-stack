@@ -614,7 +614,7 @@ public class StudentComparator implements Comparator<Student> {
     }
 }
 ```
-Setp 3: Use the `Collections.sort()` method to sort the collection of objects. 
+Step 3: Use the `Collections.sort()` method to sort the collection of objects. 
 ```java
 import java.util.ArrayList;
 import java.util.Collections;
@@ -693,3 +693,131 @@ public class Main {
 }
 ```
 
+## Method Overloading
+Allows the programmers to create methods with the same name. Useful when we need to have methods that perform similar tasks but with different parameter lists. 
+
+Overloading is also known as compile-time (or static) polymorphism
+
+### Method Overloading: Legal Examples 
+1. Methods with the same name, but different types of parameters. 
+
+Eg. 
+```java
+public class Tools {
+    public static int raiseXtoPowerY(int x, int y){
+        int result = 1; 
+        for (int i = 1; i <= y, ++i){
+            result *=x; 
+        }
+        return result; 
+    }
+    public static double raiseXtoPowerY(double x, int y){
+        int result = 1; 
+        for (int i = 1; i <= y, ++i){
+            result *=x; 
+        }
+        return result; 
+    }
+}
+```
+
+2. Methods with the same name but different number of parameters. 
+
+Eg. 
+```java
+public class Calculator {
+    public int add(int num1, int num2) {
+        return num1 + num2;
+    }
+
+    public int add(int num1, int num2, int num3) {
+        return num1 + num2 + num3;
+    }
+
+    public double add(double num1, double num2) {
+        return num1 + num2;
+    }
+
+    public static void main(String[] args) {
+        Calculator calculator = new Calculator();
+
+        int sum1 = calculator.add(2, 3);
+        int sum2 = calculator.add(2, 3, 4);
+        double sum3 = calculator.add(2.5, 3.7);
+
+        System.out.println("Sum1: " + sum1); // Output: Sum1: 5
+        System.out.println("Sum2: " + sum2); // Output: Sum2: 9
+        System.out.println("Sum3: " + sum3); // Output: Sum3: 6.2
+    }
+}
+```
+
+3. Methods with the same name but with different ordering of parameters (different data types). 
+
+### Method Overloading: iLegal Examples 
+
+1. Methods with the same name and same parameter, but different return types. 
+
+ methods with the same name and the same parameter types but different return types are not considered valid method overloading in Java. Method overloading is determined based on the method name and the parameters, but the return type alone does not differentiate overloaded methods.
+
+### `this` keyword 
+A reference to the object from the object methods 
+
+### Constructor Overloading 
+Recommendation: Have one constructor that does all the work, and has all the other constructor (with fewer parameter) chain to that one. 
+
+Eg. 
+
+```java
+public class Car {
+    private String brand;
+    private String model;
+    private int year;
+    private String color;
+
+    // Constructor with all parameters
+    public Car(String brand, String model, int year, String color) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.color = color;
+    }
+
+    // Constructor with brand, model, and year parameters (chaining to the main constructor)
+    public Car(String brand, String model, int year) {
+        this(brand, model, year, "Unknown");
+    }
+
+    // Constructor with brand and model parameters (chaining to the main constructor)
+    public Car(String brand, String model) {
+        this(brand, model, 0, "Unknown");
+    }
+
+    // Getter methods
+    public String getBrand() {
+        return brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public static void main(String[] args) {
+        Car car1 = new Car("Toyota", "Corolla", 2022, "Silver");
+        Car car2 = new Car("Honda", "Civic", 2021);
+        Car car3 = new Car("Ford", "Mustang");
+
+        System.out.println("Car 1: " + car1.getBrand() + " " + car1.getModel() + " " + car1.getYear() + " " + car1.getColor());
+        System.out.println("Car 2: " + car2.getBrand() + " " + car2.getModel() + " " + car2.getYear() + " " + car2.getColor());
+        System.out.println("Car 3: " + car3.getBrand() + " " + car3.getModel() + " " + car3.getYear() + " " + car3.getColor());
+    }
+}
+```

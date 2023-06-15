@@ -239,51 +239,9 @@ public static int sum(int a, int b) {
 }
 ```
 
-## Java Methods 
+## Object, Class and Methods
 
-### Method Declaration
-
-```java
-public static void main(String[] args) {
-    myMethod();
-}
-
-static void myMethod() {
-    System.out.println("Hello World!");
-}
-```
-
-### Method Parameters
-The method parameters are the values that are passed when the method is called. Inside the method, the parameters act as variables.
-
-```java
-public static void main(String[] args) {
-    myMethod("John");
-}
-
-static void myMethod(String name) {
-    System.out.println("Hello " + name);
-}
-```
-
-In Java, variables are passed by value. It means that when a method is called, the parameters are the values of the variables passed into the method.
-
-```java
-public static void main(String[] args) {
-    int x = 10;
-    myMethod(x);
-    System.out.println(x); // Outputs 10
-}
-
-static void myMethod(int x) {
-    x = 25;
-}
-```
-
-## Object, Class, and Interface
-
-### Classes and Objects
-
+### Class 
 ```java
 public class MyClass {
     int x = 5;
@@ -293,8 +251,114 @@ public class MyClass {
         System.out.println(myObj.x); // Outputs 5
     }
 }
+``` 
+
+### Object
+An object is an instance of a class. An object is an instantiation of a class with the keyword `new`. 
+
+### Instance variables
+Attribute of a particular object. To be initiated by the constructor. 
+
+### Class variables and constant
+Collective information that is not specific to individual objects of the class. 
+Used to define constant values used by al instances created using the class. 
+Indicated by the `static` keyword. 
+
+Consider the following example: 
+
+```java
+public class Circle {
+    // Class variables
+    private static final double PI = 3.14159; // Constant
+    private static int numberOfInstances = 0;
+
+    // Instance variables
+    private double radius;
+
+    // Constructor
+    public Circle(double radius) {
+        this.radius = radius;
+        numberOfInstances++;
+    }
+
+    // Methods
+    public double getArea() {
+        return PI * radius * radius;
+    }
+
+    public double getCircumference() {
+        return 2 * PI * radius;
+    }
+
+    public static int getNumberOfInstances() { 
+        return numberOfInstances;
+    }
+
+    public static void main(String[] args) {
+        Circle circle1 = new Circle(5);
+        Circle circle2 = new Circle(3.5);
+
+        System.out.println("Area of circle1: " + circle1.getArea());
+        System.out.println("Circumference of circle1: " + circle1.getCircumference());
+
+        System.out.println("Area of circle2: " + circle2.getArea());
+        System.out.println("Circumference of circle2: " + circle2.getCircumference());
+
+        System.out.println("Number of circle instances created: " + Circle.getNumberOfInstances());
+    }
+}
+
 ```
 
+The `PI` variable is declared as `static final`, making it a **constant**. It represents the mathematical constant π and is a class-level variable. It **cannot be modified** and is shared among all instances of the Circle class.
+
+The numberOfInstances variable is declared as **static**, making it a class variable. It keeps track of the number of Circle objects created. It is incremented in the constructor each time a new Circle object is instantiated. As a class variable, it is **shared** among all instances of the Circle class.
+
+Note: Static variables can be used in any type of methods: static or non-static. Non-static variables cannot be used inside static methods.
+
+### Methods 
+
+#### Instance method
+Operates on an object. 
+
+#### Class method
+Service provided by a class and is not associated with a particular object.  
+Indicated by the `static` keyword. 
+
+Consider the following example: 
+```java
+public class MathUtils {
+    private int value;
+
+    public MathUtils(int value) {
+        this.value = value;
+    }
+
+    // Instance method
+    public void square() {
+        int result = value * value;
+        System.out.println("Square of " + value + " is: " + result);
+    }
+
+    // Class method
+    public static void cube(int value) {
+        int result = value * value * value;
+        System.out.println("Cube of " + value + " is: " + result);
+    }
+
+    public static void main(String[] args) {
+        MathUtils mathObj1 = new MathUtils(5);
+        mathObj1.square(); // Calling instance method
+
+        MathUtils.cube(3); // Calling class method
+    }
+}
+
+```
+
+#### [Method Overloading](./JavaOOP.md#method-overloading)
+
+## Abstract Class and Interface 
 ### Abstract Class
 
 ```java
@@ -358,6 +422,7 @@ class Main {
 Output:
 > The pig says: wee wee
 > The pig is running 
+
 
 ## File I/O
 

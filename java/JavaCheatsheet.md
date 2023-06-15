@@ -1094,3 +1094,96 @@ As you can see in the example, the `Collections.sort()` method modifies the orig
 
 Therefore, although Java passes objects by reference, it's essential to understand that modifying an object does not change the reference itself.
 
+## Arrays 
+An array is a container object that holds a fixed number of values of a single type. 
+
+### Array Declaration 
+```java 
+int[] intArray; // method 1 
+int intArray[]; // method 2, discouraged; To accommodate C programming habit. 
+```
+
+### Array Instantiation 
+```java
+int[] intArray = new int[5]; //5 is the length of the array 
+```
+Array elements are initialized to default values. 
+```java
+int[] intArray = new int[2]; 
+double[] doubleArray = new double[3]; 
+boolean[] booleanArray = new boolean[4]; 
+String[] stringArray = new String[5]; 
+```
+
+| Type | Default Value | 
+| ---  | --- | 
+| int | 0 |
+| double | 0.0 |
+| boolean | false |
+| String/Object | null | 
+
+### Element Assignment and Access 
+```java
+int[] intArray = new int[5]; 
+intArray[0] = 1; 
+intArray[2] = 3; 
+intArray[3] = 5; 
+System.out.println(intArray[0]); // 1 
+```
+
+### Array Declaration, Instantiation and Initialization 
+```java
+String[] stringList = {"Apple", "Banana", "Cherry"}; 
+```
+
+### Loop through an Array 
+
+1. Use for loop: 
+```java 
+int[] intArray = {1, 3, 5}; 
+for (int i = 0; i < intArray.length; i++){
+    System.out.println(intArray(arr[i])); 
+}
+```
+
+### Convert Array to ArrayList 
+
+```java 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class ArrayConversionExample {
+    public static void main(String[] args) {
+        String[] array = {"apple", "banana", "orange"};
+        
+        List<String> arrayList = Arrays.asList(array);
+        
+        System.out.println("ArrayList: " + arrayList);
+    }
+}
+```
+
+`Arrays.asList()` method is used to convert the array `array` into an ArrayList `arrayList`. The resulting ArrayList will contain the same elements as the original array. Note that `Arrays.asList()` returns a fixed-size list backed by the original array, so any modifications to the ArrayList will affect the underlying array.
+
+### Convert ArrayList to Array 
+```java 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class ArrayListConversionExample {
+    public static void main(String[] args) {
+        List<String> arrayList = new ArrayList<>();
+        arrayList.add("apple");
+        arrayList.add("banana");
+        arrayList.add("orange");
+        
+        String[] array = arrayList.toArray(new String[arrayList.size()]);
+        
+        System.out.println("Array: " + Arrays.toString(array));
+    }
+}
+```
+
+`toArray()` method is called on the `arrayList` to convert it into an array. The resulting array will have the same elements as the original ArrayList. Note that you need to provide an array of the **appropriate type** and **size** to the `toArray()` method. In this case, we pass `new String[arrayList.size()]` to create a new String array of the same size as the ArrayList.

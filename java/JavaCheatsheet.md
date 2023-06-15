@@ -29,6 +29,21 @@
     * [File Class](#file-class) 
     * [Reading Files](#reading-files) 
     * [Writing Files](#writing-files) 
+* [Exception Handling](#exception-handling)
+    * [Try-Catch Control Flow](#try-catch-control-flow)
+    * [Common Exceptions](#common-exceptions)
+    * [Types of Exceptions](#types-of-exceptions)
+    * [Exception Management](#exception-management)
+    * [Custom Exceptions](#custom-exceptions)
+* [Collection]
+    * [Collection vs Collections](#collection-vs-collections)
+    * [List](#list)
+    * [Set](#set)
+    * [Map](#map)
+    * [Queue](#queue)
+    * [Traversing Collections](#traversing-collections)
+    * [Sorting Collection](#sorting-collections)
+    * [Question on Collections](#question-on-collections)
 
 ## Java Data Types
 
@@ -570,7 +585,7 @@ public void method() throws Exception {
 }
 ```
 
-## Custom Exceptions
+### Custom Exceptions
 Custom exceptions are user-defined exceptions.
     
 ```java
@@ -906,7 +921,7 @@ Output:
 
 
 
-### Question: 
+### Question on Collections
 - Why we must use `Integer` instead of `int` in `ArrayList<Integer>`?
 
 In Java, the `ArrayList` class is a **generic class**, which means it can hold objects of **any type**. When you specify a specific type for `ArrayList`, such as `ArrayList<Integer>`, you are creating an `ArrayList` that can only store objects of type `Integer`. 
@@ -1013,3 +1028,4 @@ After reversing: [9, 5, 3, 2, 1]
 As you can see in the example, the `Collections.sort()` method modifies the original `numbers` ArrayList, and the subsequent `Collections.reverse()` method also modifies the same ArrayList. The reference `numbers` remains the same throughout the program.
 
 Therefore, although Java passes objects by reference, it's essential to understand that modifying an object does not change the reference itself.
+

@@ -44,7 +44,14 @@
     * [Traversing Collections](#traversing-collections)
     * [Sorting Collection](#sorting-collections)
     * [Question on Collections](#question-on-collections)
-
+* [Arrays](#arrays)
+    * [Array Declaration](#array-declaration)
+    * [Array Instantiation](#array-instantiation)
+    * [Element Assignment and Access](#element-assignment-and-access)
+    * [Array Declaration, Instantiation and Initialization](#array-declaration-instantiation-and-initialization)
+    * [Convert Array to ArrayList](#convert-array-to-arraylist)
+    * [Convert ArrayList to Array](#convert-arraylist-to-array)
+    * [Sorting Array](#sorting-array)
 ## Java Data Types
 
 ### Primitive Data Types
@@ -1187,3 +1194,94 @@ public class ArrayListConversionExample {
 ```
 
 `toArray()` method is called on the `arrayList` to convert it into an array. The resulting array will have the same elements as the original ArrayList. Note that you need to provide an array of the **appropriate type** and **size** to the `toArray()` method. In this case, we pass `new String[arrayList.size()]` to create a new String array of the same size as the ArrayList.
+
+### Sorting Array
+
+1. Using `Arrays.sort()` method to sort arrays. 
+
+Eg. 
+```java 
+import java.utilArrays; 
+
+public class ArraySortingExample{
+    public static void main(String[] args){
+        int[] numbers = {5, 2, 1, 3, 9}; 
+
+        // Sorting the array 
+        Arrays.sort(numbers); 
+
+        System.out.println("Sorted array: " + Arrays.toString(numbers)); 
+    }
+}
+```
+
+### Sorting Arrays of Objects 
+
+To sort an array of objects in the array must either implement the `Comparable` interface or you can provide a custom `Comparator` implementation.
+
+Eg. Using comparator 
+```java
+import java.util.Arrays; 
+import java.util.Comparator; 
+
+public class ArrayObjectSortingEg{
+    public static void main(String[] args){
+        String[] names = {"Apple", "Pear", "Banana"}; 
+
+        // Sorting the array using a custom comparator 
+        Arrays.sort(names, new NameComparator()); 
+
+        // Display the sorted array 
+        System.out.println("Sorted string array: " + Arrays.toSting(names)); 
+
+    }
+}
+
+class NameComparator implements Comparator<String>{
+    @Override 
+    public int (compare String name1, String name2){
+        return name1.compareToIgnoreCase(name2); 
+    }
+}
+```
+
+Eg. Using comparable 
+```java 
+import java.util.Arrays; 
+
+class student implements Comparable<Student>{
+    private String name; 
+    private int age; 
+
+    public student(String name, int ange){
+        this.name = name; 
+        this.gae = age; 
+    }
+
+    @Override
+    public int compareTo(Student other){
+        // Compare students based on their age 
+        return Integer.compare(this.age, other.age); 
+    }
+
+    @Override 
+    public String toString(){
+        return ("Name: " + this.name + "Age: " + this.age); 
+    }
+}
+
+public class ArrayObjSortingEg{
+    public static void main(String[] args){
+        Student[] students = {
+            new Student("Alice", 20), 
+            new Student("Tom", 20), 
+            new Student("Bob", 20), 
+        }; 
+
+        Arrays.sort(students); 
+
+        for (Student student : students){
+            System.out.println(student.toString()); 
+        }
+    }
+}

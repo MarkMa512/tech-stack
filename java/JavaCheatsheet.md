@@ -85,6 +85,9 @@ System.out.println(myArray.getClass().getName()); // Output: [I (representing th
 
 ```
 
+### Variable Naming Conventions 
+an unlimited-length sequence of Unicode letters and digits, beginning with a letter, the dollar sign " $ ", or the underscore character " _ ". The convention, however, is to always begin your variable names with a letter, not " $ " or " _ ".
+
 ## Java Operators 
 
 ### Arithmetic Operators
@@ -146,6 +149,22 @@ System.out.println(myArray.getClass().getName()); // Output: [I (representing th
 | >>= | x >>= 3 | x = x >> 3 |
 | <<= | x <<= 3 | x = x << 3 |
 
+### Pre and Post Increment 
+
+#### Pre-increment 
+- Increase, then assign/execute 
+```java
+int i = 1; 
+System.out.println(++i); //2 will be printed
+```
+
+#### Post-increment 
+- Assign/execute, then increase 
+```java
+int i = 1; 
+System.out.println(i++); // 1 will be printed 
+System.out.println(i); //2 will be printed 
+```
 
 ## Java Control Flow Statements 
 
@@ -1285,3 +1304,4 @@ public class ArrayObjSortingEg{
         }
     }
 }
+```

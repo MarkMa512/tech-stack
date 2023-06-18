@@ -1305,3 +1305,63 @@ public class ArrayObjSortingEg{
     }
 }
 ```
+## printf() 
+An optional method to control, format and display text to the console window. 
+printf() uses the java.util.Formatter class to format string and generate the output. 
+It accept 2 arguments: 
+    1. format string: a string that you would like to display to the console window 
+    2. An object/variable/value 
+We are able to format some value and place it at some position within the string via a format specifier, represented by a `%` sign. 
+
+`%[flags][width][.precision]conversion-character  // [optional specifiers]`
+
+
+Format Rules: 
+1. Format specifiers includes flags, width, precision and conversion characters  
+`%[flags][width][.precision]conversion-character  // [optional specifiers]`
+2. Conversion Characters: required to determine how the argument is formatted
+    - s: formats strings 
+    - d: formats decimal int
+    - f: formats floating-point numbers
+    - t: formats date/time values
+3. Optional Modifiers: 
+    - [flags] defines the standard ways to modify the output; most common for formatting integers and floating-point numbers 
+    - [width] specifies the field width for outputting the argument; represents the min no. of char written  to the output 
+    - [.precision] specifies the number of digits of precision when outputting floating-point values. Can be used to define the length of a substring to extract from a String. 
+3. Line Separator: `%n` specifier; automatically insert the host system’s native line separator 
+4. Boolean Formatting: %b; if the input value is true, the output is true; false otherwise. 
+    %B can be used for uppercase formatting 
+5. String Formatting: `%s` 
+    - ‘%S’ for uppercase formatting 
+    - Specify min length: “‘%12s’”, “TestTest”
+    - Left justify: “‘%-20s’”, “TestTest” 
+    - Limit the number of char in output by specifying precision: “‘%2.2s’”, “TestTest” 
+6. Char Formatting: %c 
+7. Number Formatting: 
+    - Integer: byte, short, int, long and bigInteger if we use %d 
+    - “%d”, 10000L
+    - Separator: , flag
+        - Locale.US, “%,d %n”, 10000
+        - Locale.ITALY, “%, d%n, 10000
+    - Float: %f
+        - Width of 5, precision of 2 dp: “‘%5.2f’”, 3.1415926
+        - Scientific: “‘%5.2e’”, 3.1415926
+8. Date and Time Formatting: %t
+    a. Time: T: “%tT%n”, date
+    - H, M, S are responsible for extracting the hours, minutes and seconds from the input Date object 
+    “Hours %tH: minutes %tM: seconds %tS%n”, date, date, date 
+    - L, N represent milliseconds and nanoseconds accordingly 
+    - p: adds a.m p.m formatting (small letter only! )
+    - Z prints out the time-zone offset 
+    - Avoid multiple argument, use index reference to the input parameter: 
+        “Hours %1$tH: minutes %1$tM: seconds %1$tS%n”, date
+    b. Date: 
+    - A: prints the full day of the week 
+    - d: formats as a 2 digit day of the month 
+    - B: full month name 
+    - m: formats a 2-digits month 
+    - Y outputs a year in 4-digits 
+    - y: outputs the last 2-digits of the year 
+
+    “%1$tA, %1$tB, %1$tY %n”, date 
+    “%1$td, %1tm, %1$ty %n”, date

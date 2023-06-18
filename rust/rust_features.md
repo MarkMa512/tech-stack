@@ -287,3 +287,75 @@ fn main() -> Result<(), Error> {
 
     Okay(())
 ```
+
+## Haskell: Algebraic Data Types (ADT)
+
+ADTs are a type system concept commonly found in functional languages. They allow us to create composite types using:  
+
+- Sum Types: also known as variant types, that could be one of several variant. 
+    ```rust
+    // A shape that can either be a circle, a rectangle, or a triangle 
+    enum Shape{
+        Circle(f32), 
+        Rectangle(f32, f32), 
+        Triangle(f32, f32, f32), 
+    }
+    ```
+- Product Types: similar to struct in C that allow us to bundle multiple types together
+    ```rust 
+    struct Person{
+        name: String, 
+        age: u32, 
+        height: f32, 
+    }
+    ```
+
+ADTs are useful as they allow us to model complex data structure and enforce constraints on data at the type level, which can help catch errors at compile time. 
+
+### ADTs in Haskell
+
+```haskell
+data Employee
+    = Manager {name :: String, subordinates :: [Employee]}
+    | Worker {name :: String, manager :: String} 
+```
+This is a `sum type` consists of 2 variants, manager and worker, each variant can hold different types and amounts of data. While `manager` has a name and a list of subordinates while a worker has name and a single manager. 
+
+### ADTs in Rust 
+Same example implementation in Rust: 
+```rust
+enum Employee {
+    Manager {name : String, subordinates : Vec<Box<Employee>>}, 
+    Worker {name : String, manager : String} 
+}
+```
+`Employee` is a sum type, so we use `enum`. 
+
+While the concept of ADTs is similar between rust and Haskell, there are some differences. 
+Rust integrates ADTs into an imperative programming style, unlike Haskell, which is purely functional. 
+Rust combines ADTs with other language features, such as  
+
+- Pattern matching  
+- Lifetimes  
+- The borrow checkers  
+
+To ensure memory safety and data race prevention. 
+
+### Pattern Matching 
+Rust also took pattern matching from functional languages like Haskell. Pattern matching in rust also enforces exhaustiveness, which requires all variants of an enum must be handled, preventing potential runtime errors. 
+
+```rust
+enum Employee {
+    Manager {name : String, subordinates : Vec<Box<Employee>>}, 
+    Worker {name : String, manager : String} 
+}
+fn main(){
+    let employee = Employee::Worker{name:"Bob".to_string(), manager: "Alice".to_string()}; 
+
+    match employee {
+        Employee::Manager {name, subordinates} => println!("{} is a manager with {} subordinates.", name, subordinates.len()), 
+        Employee::Worker {name, manager} => println!("{} is a worker under the management of {}.", name, manager), 
+    }
+}
+```
+

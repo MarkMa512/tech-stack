@@ -359,3 +359,119 @@ fn main(){
 }
 ```
 
+## OOP: Polymorphism 
+Polymorphism is the ability of an object/function to take on multiple forms or behave differently based on the context in which it is used. Some languages implement polymorphism through `Inheritance`, but rust takes a different approach, through `Traits` and `Generics`. 
+
+### Traits 
+Traits define a set of functions and method that types can implement. Similar to `interface` in other languages. 
+
+Notes: 
+    1. Types can implement multiple traits. 
+    2. Traits can have default implementations for functions and methods. 
+
+```rust 
+trait Shape {
+    fn area(&self) -> f64; 
+}
+
+struct Rectangle {
+    width: f64, 
+    height: f64, 
+}
+
+// we can implement trait Shape on Rectangle and Circle structs, which calculates area differently 
+impl Shape for Rectangle {
+    fn area(&self) -> f64{
+        self.width * self.height 
+    }
+}
+
+struct Circle {
+    radius: f64, 
+}
+
+impl Shape for Circle{
+    fn area(&self)->f64{
+        self.radius * self.radius * std::f64::consts::PI
+    }
+}
+```
+
+### Generics
+Enables us to write code that is abstracted over types, which leads to reusable and efficient code. 
+
+In rust, generics can be bound by traits
+
+```rust 
+trait Shape {
+    fn area(&self) -> f64; 
+}
+
+struct Rectangle {
+    width: f64, 
+    height: f64, 
+}
+
+// we can implement trait Shape on Rectangle and Circle structs, which calculates area differently 
+impl Shape for Rectangle {
+    fn area(&self) -> f64{
+        self.width * self.height 
+    }
+}
+
+struct Circle {
+    radius: f64, 
+}
+
+impl Shape for Circle{
+    fn area(&self)->f64{
+        self.radius * self.radius * std::f64::consts::PI
+    }
+}
+
+// print_area() takes a generic argument shape 
+// In rust, generics can be bound by traits, in this case, the generic T can be any type that implements the shape trait
+fn print_area<T: Shape>(shape: &T){
+    println!("Area: {}", shape.area()); 
+}
+
+fn main(){
+    let rectangle = Rectangle {
+        width: 5.0, 
+        heigh: 3.0, 
+    }; 
+
+    let circle = Circle {radius:2.5}; 
+
+    print_area(&rectangle); 
+    print_area(&circle); 
+    // print_area is able to to accept both rectangle and circle as they both implemented Shape trait
+
+    // rust also supports dynamic dispatch with trait object
+    let shapes: Vec<Box<dyn Shape>> = vec![Box::new(rectangle), Box::new(circle)]; 
+}
+```
+The trait system in Rust has its roots in Haskell's Type classes, which provides shared behaviors for types. But Rust builds on top f the concept of type classes by incorporating **ownership, borrowing** and **lifetimes** into the trait system, which are central to rust's memory safety. 
+
+### Trait Object and Dynamic Dispatch 
+Rust also supports dynamic dispatch with trait object. Trait Object allows you to teat different types that implements the **same trait** as **interchangeable**. 
+
+```rust
+    // rust also supports dynamic dispatch with trait object
+    let shapes: Vec<Box<dyn Shape>> = vec![Box::new(rectangle), Box::new(circle)]; 
+```
+Here, we have created a vector of shape trait object that stores a rectangle and cycle 
+
+### Advantages of the trait system in Rust 
+
+#### 1. Flexibility and Composition 
+Multiple types can independently implement the same trait, enabling flexible composition, w/o relying on strict inheritance hierarchies. 
+
+#### 2. Non-invasive and Extensive 
+They allow behavior to be added to types without modifying their original implementation, or inheritance hierarchies. 
+
+#### 3. No of Fragile Base Class Problem 
+Fragile Base Class Problem: modifications to a base class can unintentionally impact the derived classes. 
+
+#### 4. Static Dispatch and Performance 
+Enables efficient code generation. 

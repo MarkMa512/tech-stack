@@ -27,7 +27,7 @@ High Level Language Abstractions should not impose any runtime overhead or perfo
 3. If/else 
 4. Raw pointers 
 
-#### Example in C++: Using manual implementation 
+### Example in C++: Using manual implementation 
 ```cpp
 #include <iostream>
 #include <vector>
@@ -49,12 +49,14 @@ int main(){
 }
 ```
 In the example above, we need to do  
-    - Loop initialization 
-    - Condition checking 
-    - Element comparison 
+
+    - Loop initialization  
+    - Condition checking  
+    - Element comparison  
+
 making it less readable and prone to errors. 
 
-##### size_t
+#### size_t
 The datatype `size_t` is an unsigned integer type that is commonly used to represent the sizes or indices of objects in memory. It is an implementation-defined type and is typically defined as an alias for an unsigned integer type, such as `unsigned int` or `unsigned long`.
 
 The `size_t` type is often used in C and C++ to represent the size of arrays, the length of containers, or the indices of elements within a collection. It is particularly useful when dealing with memory-related operations, such as memory allocation, indexing, and looping through containers.
@@ -62,7 +64,7 @@ The `size_t` type is often used in C and C++ to represent the size of arrays, th
 Using `size_t` provides a guarantee that the type is large enough to represent the size of any object in memory. It is typically defined to have a size that matches the system's memory addressing capabilities, making it suitable for addressing the maximum possible memory range on a given platform.
 
 
-#### Example in C++: Using iterator abstractions 
+### Example in C++: Using iterator abstractions 
 ```cpp 
 #include <iostream>
 #include <vector>
@@ -82,19 +84,19 @@ int main(){
     return 0; 
 }
 ```
-##### auto
+#### auto
 In the code above, the use of `auto` as the type for maxElement is appropriate and preferable in this case. The std::max_element function returns an iterator pointing to the maximum element in the range, not the actual value itself. Therefore, using `auto` allows the type deduction to automatically determine the correct iterator type based on the container type (std::vector<int> in this case).
 
 If you still want to explicitly specify the type, you can use the iterator type std::vector<int>::iterator for maxElement. However, it's recommended to stick with auto for flexibility and easier maintenance of the code. The auto keyword ensures that the code remains correct even if the container type changes in the future.
 
-##### maxElement vs *maxElement 
+#### maxElement vs *maxElement 
 In the first example using the manual implementation, `maxElement` is a simple `int` variable that stores the maximum element value directly. So, when printing it with `std::cout`, you can directly output the value of maxElement using the `<<` operator. The value itself is accessible directly as it is assigned from the elements of the vector.
 
 In the second example using the `std::max_element` algorithm with iterators, `maxElement` is an iterator pointing to the maximum element in the vector. To access the value pointed to by the iterator, you need to dereference it using the `*` operator. This retrieves the value stored at that iterator position.
 
 By dereferencing the iterator (`*maxElement`), you access the actual value of the maximum element, which can then be printed using `std::cout`.
 
-#### Example in Rust: Using iterator abstractions 
+### Example in Rust: Using iterator abstractions 
 ```rust 
 fn main(){
     let numbers = vec![5, 2, 8, 1, 3]; 
@@ -116,7 +118,7 @@ fn main(){
 }
 ```
 
-##### Option Type in Rust 
+#### Option Type in Rust 
 In Rust, the `Option` type is an enum provided by the standard library that represents the possibility of either having a value (`Some`) or not having a value (`None`). It is used to handle situations where a value may be present or absent.
 
 Here's a brief overview of the two variants of the `Option` enum:
@@ -130,7 +132,7 @@ By using the `Option` type, Rust enforces explicit handling of the absence of va
 To access the value inside an `Option`, you need to use **pattern matching** or one of the available methods to transform or extract the value. Some commonly used methods for working with `Option` include `unwrap()`,` expect()`, and `match` expressions.
 
 
-#### Example in Python: Using iterator abstraction: non 0-cost 
+### Example in Python: Using iterator abstraction: non 0-cost 
 ```py
 numbers:list = [5, 2, 1, 3, 8]
 
@@ -148,4 +150,140 @@ if max_element is not None:
     print(f"Max element: {max_element}"); 
 else: 
     print("The list is empty"); 
+```
+
+## Ownership 
+Based on "Resources Acquisition Is Initializations" (RAII) Design Pattern in C++. 
+
+- Allocated memory 
+- File handles 
+- Database connections 
+
+Should be tied to object lifetimes. When an object is created, it acquires resources; When those object is destroyed, those resources are released. 
+
+### Example in C++ w/o RAII Pattern 
+```cpp
+#include <sqlite3.h>
+#include <string>
+
+int main(){
+    sqlite3* db; 
+    std::string dbName = "example.db"; 
+
+    sqlite3_open(dbName.c_str(), &db); 
+
+    if (db != nullptr){ // check the db to ensure that it is not a null pointer 
+        // perform database operations 
+
+        // close the connection 
+        sqlite3_close(db); 
+    }
+    return 0; 
+}
+```
+If the database connections are not closed, this creates a resource leak. 
+
+### Example in C++ with RAII Pattern 
+
+```cpp 
+#include <sqlite3.h>
+#include <string>
+
+class DatabaseConnection{
+    private: 
+        sqlites3* db;
+
+    public: 
+        DatabaseConnection(cost std::string& dbName){
+            sqlite3_open(dbName.c_str(), &db); // acquire the resources at the constructor 
+        }
+        // destructor 
+        ~DatabaseConnection(){
+            if (db!=nullptr){
+                sqlite3_close(db); // close the resources at the destructor 
+            }
+        }
+        bool isConnected() cost{
+            return db != nullptr; 
+        }
+}; 
+
+int main(){
+    DatabaseConnection connection("example.db"); 
+    // connection is a stack variable so it will be de-allocated at the end of the main function. 
+    // when it is de-allocated, its destructor is called and the database connection is closed. 
+    // convenient and reliable resource management
+    if (connection.isConnected()){
+        // perform database operations here 
+    }
+    return 0; 
+}
+``` 
+
+### Ownership Rules 
+
+1. Each value in Rust has a variable that's called it's owner
+2. There can only be 1 owner at a time
+3. When the owner goes out of the scope, the value will be dropped 
+
+### Example in Rust
+```rust 
+use rusqlite::{Connection, Error};
+
+struct DatabaseConnection {
+    connection: connection, // holds a connection object 
+}
+
+iml DatabaseConnection{
+    fn new(db_name:&str)->Result<DatabaseConnection, Error>{
+        let connection = Connection::open(db_name)?; // The ? operator is used to propagate any potential errors that may occur during the connection opening process.
+        // when a new database connection instance is created, we acquire the connection and store it in the struct
+        Okay(DatabaseConnection{connection}) 
+    }
+}
+
+fn main() -> Result<(), Error> {
+    let connection = DatabaseConnection::new("example.db")?; 
+    // create an instance of connection struct, pass in the database name, then perform any database operation we want
+    // perform database operations 
+    Okay(()) //  Ok(()) is returned to indicate successful execution.
+}
+```
+Unlike C++, there is no destructor that releases the Database connection. Instead, the connection variable will go out of scope at the end of main, and the database instance will be dropped. Any value database connection is holding will be dropped, automatically. 
+
+### Borrowing Rules 
+
+1. At any given time, you can either have one mutable reference, or any number of immutable reference. 
+2. References must always be valid. 
+
+By enforcing that resources either have multiple readers or a single writer, rust prevents an entire class of bugs known as `data races`. 
+By enforcing that references must be valid, rust prevents the null pointer dereferencing 
+
+```rust 
+use rusqlite::{Connection, Error};
+
+struct DatabaseConnection {
+    connection: connection, // holds a connection object 
+}
+
+iml DatabaseConnection{
+    fn new(db_name:&str)->Result<DatabaseConnection, Error>{
+        let connection = Connection::open(db_name)?; // The ? operator is used to propagate any potential errors that may occur during the connection opening process.
+        // when a new database connection instance is created, we acquire the connection and store it in the struct
+        Okay(DatabaseConnection{connection}) 
+    }
+}
+
+fn main() -> Result<(), Error> {
+    let connection = DatabaseConnection::new("example.db")?; 
+
+    // valid, multiple immutable reference 
+    let coonn1 = &connection; 
+    let coonn2 = &connection; 
+    let coonn3 = &connection; 
+    let coonn4 = &connection; 
+
+    let conn4 = &mut connection; // invalid, against borrowing rules 
+
+    Okay(())
 ```

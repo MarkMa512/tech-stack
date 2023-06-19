@@ -475,3 +475,104 @@ Fragile Base Class Problem: modifications to a base class can unintentionally im
 
 #### 4. Static Dispatch and Performance 
 Enables efficient code generation. 
+
+## JavaScript: Async/Await
+
+### Async Programming 
+a programming paradigm that allow tasks to run independently and concurrently, without blocking the execution of the main program. 
+
+### Promise
+The `promise` object represents the eventual completion (or a failure) of an async operation and its resulting value. 
+
+Promise provides a way to handle async operations. A promise is an object that wraps the result of an asynchronous operations, allowing the developer to attach callbacks to handle the success or failure of the operation. 
+
+A simple example of promise in JavaScript: 
+```js
+function getUserData(userID){
+    return fetch(`https://example.api.come/users/${userID}`) // use fetch() to make an API call, which is a async operation and will return an promise 
+    .then(response => response.json()) // we call then() method on the promise and pass in a callback, which will be called if the operation succeeds and  
+    .catch(error => console.error('Error: ', error)) // we call catch() method and pass in another callback, which will be called if the operation fails 
+}
+```
+
+A more complex example of using promise to obtain user, post and comment data of a post. We need to make 3 API calls that are dependent on each other. 
+Using promise leads to deeply nested code that is not very readable. 
+```js 
+function getPostData(userID, postID){
+    return fetch(`https://example.api.come/users/${userID}`) 
+    .then(response => response.json()) // first, get the user data 
+    .then(user => {
+        return fetch(`https://example.api.come/posts/${postID}`) 
+        .then(response => response.json()) // then, get the post data 
+        .then(post => {
+            return fetch(`https://example.api.come/posts/${postID}/comments`)
+                .then(response => response.json()) // finally get the post comment 
+                .then(comments => {
+                    return {user, post, comments} // then we have all the data to return
+                })
+        })
+    })
+    .catch(error => console.error('Error: ', error))
+}
+```
+
+### Example using Async-await syntax in JavaScript 
+A language feature that allows the developers to write async code that looks like synchronous code, which make it more readable. 
+
+It is a syntactic sugar for working with promises. 
+
+```js
+async function getPostData(userID, postID){ // add `async` keyword before the function definition 
+    try{ // use try-catch block to catch the error 
+        const userResponse = await fetch(`https://example.api.come/users/${userID}`) // use await keyword before each async call 
+        const user = await userResponse.json()
+
+        const postResponse = await fetch(`https://example.api.come/posts/${postID}`) 
+        const post =  await postResponse.json()
+
+        const commentsResponse = await fetch(`https://example.api.come/posts/${postID}/comments`)
+        const comments = await commentsResponse.json()
+
+        return {user, post, comments}
+    }catch (error){
+        console.error(error)
+    }
+}
+```
+
+### Async Await syntax in Rust 
+Rust has a slightly different syntax, with `async` keyword added before function definition. 
+
+Inside the function, we add `.await` to every async call. We then use `?` to propagate the call, instead of a try-catch block. 
+
+Similar to JavaScript, Async-Await syntax os a syntactic sugar for working with `futures` which are similar to `promises` in JavaScript. 
+
+```rust
+async fn get_post_data(
+    user_id: u32
+    post_id: u32
+) -> Result<(User, Post, Vec<Comment>), Error>{
+    let client = reqwest::Client::new(); 
+
+    let user: User = client
+    .get(&format!(
+        "https://example.api.come/users/{}", userID
+    ))
+    .send().await?.json().await?(); 
+
+    let Post: Post = client
+    .get(&format!(
+        "https://example.api.come/posts/{}", postID
+    ))
+    .send().await?.json().await?(); 
+
+    let comments: Vec<Comment> = client
+    .get(&format!(
+        "https://example.api.come/posts/{}/comments", postID
+    ))
+    .send().await?.json().await?(); 
+
+    Ok((user, post, comments))
+    // The semicolon at the end of the line Ok((user, post, comments)); should be removed. This is to ensure that the tuple (user, post, comments) is returned as the function's result.
+}
+```

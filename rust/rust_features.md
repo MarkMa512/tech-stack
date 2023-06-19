@@ -576,3 +576,25 @@ async fn get_post_data(
     // The semicolon at the end of the line Ok((user, post, comments)); should be removed. This is to ensure that the tuple (user, post, comments) is returned as the function's result.
 }
 ```
+
+### Rust vs JavaScript
+
+#### Rust future: Lazy 
+- Rust Async-Await model incorporates the 0-cost abstraction principle. 
+- `futures` in Rust are **lazy**, they do not start executing until explicitly pulled by awaiting them. 
+- `futures` can be scheduled, composed, and combined with other futures w/o incurring unnecessary overhead. 
+- `futures` are designed in this way because of rust's General principle of being explicit, which means favoring clear and unambiguous code that requires developers to be explicit about their intentions. 
+
+#### JS promise: eager 
+- `Promise` starts execution immediately upon creation. 
+- When a `Promise` is created, it immediately initiates the asynchronous operation right away, even if the promise is not awaited yet. 
+- This can result in potentially unnecessary work and resource utilization. 
+
+## Rust: True parallelism 
+- Run concurrent operations in parallel utilizing multiple threads. 
+
+## JavaScript: single threaded 
+- Concurrent operations aren't truly happening in parallel. 
+- Instead, JavaScript uses a non-blocking event loop, which can handel multiple operations almost at the same time, giving the illusion of parallelism. 
+
+## Meta programming: Macros 

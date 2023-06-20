@@ -597,4 +597,62 @@ async fn get_post_data(
 - Concurrent operations aren't truly happening in parallel. 
 - Instead, JavaScript uses a non-blocking event loop, which can handel multiple operations almost at the same time, giving the illusion of parallelism. 
 
-## Meta programming: Macros 
+## Meta programming and Macros 
+A programming technique that allows a program to manipulate or generate code during compile time or run time. 
+
+### Macros 
+A language feature that allow developers to define custom syntax and perform code generation and code transformation. They enable meta programming by providing a way to write code that generates or modifies other code during compilation. 
+
+An example of a declarative macro in rust called map which is used to create Hashmap. 
+```rust 
+use std::collections::HashMap;
+
+// declarative macros are defined using macro_rules keyword 
+macro_rules! map{ 
+    /*
+    This macro takes code as input, match it against a set of patterns and generate new code based on those patterns at compile time. 
+    */
+    // The first pattern matches when the macro is invoked with 2 type expression, separated by a comma as argument. 
+    ($key:ty, $val:ty) => { 
+        // if the code pass in matches this pattern, the macro will generate code that creates an empty hashmap, with the specified key $key and value $val types. 
+        {
+            let map: HashMap<$key, $val> = HashMap::new(); 
+            map // returns map
+        }
+    }; 
+    // The 2nd pattern matches when the macro is invoked with a comma separated list of key-value pairs, separated by an arrow 
+    ($($key:expr => $val:expr), *) => { // the * denotes repetition, allowing multiple key-value pairs to be matched
+        // this patter is used to create a new hashmap and populate it with the specified key value pairs. 
+        {
+            let mut map = HashMap::new(); 
+            $(map.insert($key, $val); )* 
+            map
+        }
+    }; 
+}
+
+/*
+Example usage of the map! macro 
+*/
+
+fn main(){
+    // creating HashMap manually 
+    let scores: HashMap<String, i32> = HashMap::new(); 
+
+    // use map! macro to create the HashMap and pass in the types for key and values pairs
+    let scores = map!(String, i32); 
+
+    // manually insert the HashMap through insert() method 
+    let mut scores2 = HashMap::new(); 
+    scores2.insert("Red team".to_owned(), 3); 
+    scores2.insert("Blue team".to_owned(), 5); 
+    scores2.insert("Green team".to_owned(), 2); 
+
+    // use map! macro and use the => syntax we defined previously 
+    let score2 = map!(
+        "Red team".to_owned() => 3, 
+        "Blue team".to_owned() => 5, 
+        "Green team".to_owned() => 2, 
+    ); 
+}
+``` 

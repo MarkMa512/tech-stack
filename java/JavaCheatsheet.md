@@ -1305,6 +1305,78 @@ public class ArrayObjSortingEg{
     }
 }
 ```
+
+### Passing Arrays to Methods 
+
+```java 
+public class PassingArray{
+    public static int searchMin(int[] arr){
+        // the array is accessed via `arr` inside the method 
+        int min = arr[0]; 
+        for (int element : arr){
+            if (element < min) {
+                min = element; 
+            }
+        }
+        return min; 
+        // The local variable `arr` is erased, the argument still points to the same object 
+    }
+}
+
+public class PassingArrayTest{
+    public static void main(String[] args){
+        int [] x = {3, 1, 5}; 
+        // local variable `arr` does not exits before the method searchMin() is invoked
+        int min = PassingArray.searchMin(x);
+        // the value of the argument (ie, memory address of the container containing values 3,1 5) is copied over to the parameter `arr`
+        System.out.println("Minimum value: " + min);
+    }
+}
+```
+ In Java, when an array is passed to a method, it is technically passed by value. 
+
+When an array is passed to a method, a copy of the reference to the array is passed to the method. This means that the method receives its **own copy of the reference** to the array, **not a copy of the entire array itself**. Therefore, ***any changes made to the elements of the array inside the method will affect the original array***.
+
+In the example above, the `searchMin()` method takes an `int[]` parameter called `arr`, which represents an *array*. When the `searchMin()` method is called from the `main` method, the **reference** to the array `x` is passed as an argument.
+
+Inside the `searchMin()` method, the array elements are accessed and processed using the `arr` parameter. Any modifications made to the array elements inside the method **will affect the original array x** because *they refer to the same memory locations*.
+
+```java 
+public class PassByValueDemo{
+    public static void zeroInt(int val){
+        val = 0; 
+    }
+    public static void zeroArray(int[] arr){
+        for (int i =0; i < list.length; i++){
+            arr[i] = 0; 
+        }
+    }
+    public static void main(String[] args){
+        int i = 1; 
+        int [] z = {1, 2, 3}; 
+
+        System.out.println("int i: " + i); 
+        System.out.println("array z: " + z[0] + " " + z[1] + " " + z[2] + " "); 
+
+        zeroInt(i); 
+        zeroArray(z); 
+
+        System.out.println("int i: " + i); 
+        System.out.println("array z: " + z[0] + " " + z[1] + " " + z[2] + " "); 
+    }
+}
+```
+
+Output: 
+> int i: 1  
+> array z: 1 2 3  
+> int i: 1  
+> array z: 0 0 0  
+
+In the `zeroInt` method, an int parameter `val` is received. When `zeroInt(i)` is called, the value of `i`(which is 1) is passed to `val`. However, inside the `zeroInt` method, the value of `val` is set to 0. This change *does not affect the value of `i`* in the main method because **`val` is a separate variable with its own copy of the value**.
+
+In the `zeroArray` method, an int[] parameter `arr` is received. When `zeroArray(z)` is called, the *reference* to the array `z` is passed to `arr`. Inside the zeroArray method, the *elements* of `arr` (which points to the same array as z) are **modified**, setting them to 0. This modification **affects the original array z because they refer to the same memory locations**.
+
 ## printf() 
 An optional method to control, format and display text to the console window. 
 printf() uses the java.util.Formatter class to format string and generate the output. 

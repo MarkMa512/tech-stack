@@ -656,3 +656,22 @@ fn main(){
     ); 
 }
 ``` 
+
+### From Scheme: Hygienic Macro in Rust 
+It ensures that the variables and identifiers used within a macro do not accidentally clash with the variables from the surrounding code. 
+
+```rust 
+macro_rules! greet{
+    ($name:expr)=>{ // the macro has one pattern that matches any expression and expand into code that prints a greeting message 
+        let mut name =$name; // the macro captures the provided name in a local variable. 
+        println!("Hello, {}", name); 
+    }; 
+}
+
+fn main(){
+    let name = "John"; // we define a name variable in the main function
+    greet!(name); // then invoke the greet!() macro passing in the name variable, 
+    // The variable name used in macro does not clash with variable name in surrounding code due to the automatic renaming and scoping mechanism of the macro system 
+    println!("{name}"); 
+}
+```

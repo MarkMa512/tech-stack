@@ -675,3 +675,43 @@ fn main(){
     println!("{name}"); 
 }
 ```
+
+```rust 
+macro_rules! greet{
+    ($name:expr)=>{ // the macro has one pattern that matches any expression and expand into code that prints a greeting message 
+        let mut name =$name; // the macro captures the provided name in a local variable. 
+        println!("Hello, {}", name); 
+        name = "NEW_NAME"; // this will not affect the name to be printed. 
+    }; 
+}
+
+fn main(){
+    let name = "John"; // we define a name variable in the main function
+    greet!(name); // then invoke the greet!() macro passing in the name variable, 
+    // The variable name used in macro does not clash with variable name in surrounding code due to the automatic renaming and scoping mechanism of the macro system 
+    println!("{name}"); 
+}
+```
+
+Output: 
+> Hello, John  
+>  John 
+
+## Node.js and NPM package manager in JavaScript: Cargo in Rust
+Rust official build system and package manger. It handles tasks like: 
+- Building
+- Compilation 
+- Configuration 
+
+| Command | Cargo in Rust | NPM in JavaScript |
+| --- | --- | --- | 
+| **Compilation** | `cargo build` | `npm install` | 
+| **Test** | `cargo test` | `npm test` | 
+| **Execution** | `cargo run` | `npm start` | 
+| **Dependencies Files** | `Cargo.toml` | `package.json` |
+| **Public Dependency Source** | [crates.io](https://www.crates.io) | [npmjs.com](https://www.npmjs.com) |
+
+- Reliable dependencies management 
+- streamline project building 
+- Integrated testing 
+- Simple package distribution 

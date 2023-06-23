@@ -10,8 +10,12 @@ This repository contains my notes on different programming languages, softwares,
 - [ ] [SQL]: To do
 
 ## Softwares 
+
+### CI/CD 
+- [ ] git 
 - [ ] Docker: To do 
 - [ ] Kubernetes: To do 
+
 - [ ] Nginx: To do  
 - [ ] Redis: To do  
 - [ ] Kafka: To do

@@ -1119,37 +1119,44 @@ fn main(){
 
 ## 30. [Reading User Input](https://www.youtube.com/watch?v=07pDD0uLjYc)
 ```rust
-use std::io; 
+use std::collections::HashMap; 
 
 fn main(){
-    let mut input = String::new(); 
-    println!("Please enter your name" ); 
+    let mut marks = HashMap::new(); 
+    
+    // add values 
+    marks.insert("Rust", 96); 
+    marks.insert("Java", 96); 
+    marks.insert("C++", 90); 
+    marks.insert("Fortran", 20); 
 
-    // using the read_line function provided by stdin method of the io module 
-    match io::stdin().read_line(&mut input){ // returns a Result type, can either be Okay (success) or Err (failure)
-        Ok(_) => { //The underscore _ is a placeholder for the number of bytes read from the input, which we don't need in this case.
-            println!("Success! Hello {}", input); 
-        }, 
-        Err(e) => {
-            println!("Something went wrong: {}", e); 
-        }
+    // find the length of a HashMap 
+    println!("{}", marks.len()); 
+
+    // find the value based on a key 
+    // we are using match here because there are 2 scenarios here 
+    match marks.get("Java"){
+        Some(mark) => println!("You got {} for Java!", mark), 
+        None => println! ("You did not study Java")
+    }
+
+    // remove a value 
+    marks.remove("C++"); 
+
+    // loop through hashmap 
+    for (key, value) in &marks{
+        println!("For {} you got {}!", key, value)
+    }
+
+    // check if a key exist in a HashMap 
+
+    if marks.contains_key("Rust") {
+        println!("Yes, you have studied Rust before");
+    } else {
+        println!("Nope, you did not study Rust before");
     }
 }
 ```
-Note on `read_line(&mut input)`: 
-
-In the line `match io::stdin().read_line(&mut input)`, we pass `&mut input` as a *mutable reference* to the `read_line` function because the function needs to modify the String variable input in order to store the user's input.
-
-In Rust, function arguments are **passed by value by default**. When you pass a value as an argument to a function, **a copy of that value is made**, and *any modifications made to the value inside the function do not affect the original value*. This is known as "moving" the value.
-
-However, in this case, we want the `read_line` function to **modify the input variable directly rather than making a copy**. By passing `&mut input` as a mutable reference, we allow the function to directly access and modify the original String value.
-
-The `&mut` syntax indicates that we are passing a mutable reference. It allows the function to have mutable access to the data referenced by input and modify it if needed. In this case, the `read_line` function appends the user's input to the input string, changing its content.
-
-If we were to pass input directly without the &`mut` reference, it would result in a compile-time error because the `read_line` function expects a mutable reference. By using `&mut`, we are explicitly indicating our intent to allow the function to modify the variable.
-
-
-## 31. HashMap 
 
 ## 32. Random Numbers
 

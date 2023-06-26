@@ -1159,6 +1159,26 @@ fn main(){
 ```
 
 ## 32. Random Numbers
+`Cargo.toml`
+```toml
+...
+[dependencies]
+rand = "0.3" 
+```
+`main.rs`
+```rust
+extern crate rand; // use the random crates listed in the dependencies 
+use rand::Rng; // use the thread RNG method 
+
+fn man(){
+    let random_number = rand::thread_rng().gen_range(1, 11) // (min, max+1) 
+    println!("Random Number: {}", random_number); 
+
+    // weighted boolean 
+    let random_boolean = rand::thread_rng().gen_weighted_bool(2); // n, chance being true, 1 in n chance 
+    println!("Random Boolean: {}", random_boolean); 
+}
+```
 
 ## 33. String Methods
 

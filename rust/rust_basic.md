@@ -1182,6 +1182,63 @@ fn man(){
 
 ## 33. String Methods
 
+```rust
+fn main(){
+    {
+        /*Replace*/
+        let my_string = String::from("Rust is fantastic!"); 
+        println!("After replace: {}", my_string.replace("fantastic", "great")); 
+    }
+    {
+        /*Lines*/
+        // Split the string into an iterator 
+        let my_string = Sting::from("The weather is \n nice \n outside mate! "); 
+        
+        for line in my_string.lines(){
+            println!("[{}]", line); 
+        }
+    }
+    {
+        /*Split*/ 
+        // Split the string by a delimiter 
+        let my_string = String::from("Apple+Pear+Banana"); 
+        let tokens: Vec<&str> = my_string.split("+").collect(); // split() returns an iterator, we need collect() to convert it into a vector 
+        println!("my_string: {}", my_string);
+        println!("At index = 2: {}", tokens[2]); 
+    }
+    {
+        /*Trim*/ 
+        let my_string = String::from("    test123   \n\r "); 
+        println!("Before trim: {}", my_string); 
+        println!("After trim: {}", my_string.trim()); 
+    }
+    {
+        /* Chars */ 
+        // Access the char in a string by index 
+        let my_string = String::from("decode on Youtube"); 
+
+        // other language: my_string[4]; 
+        match my_strings.chars().nth(4){ // get the index 4 element 
+        // there are 2 options 
+            Some(c) => println!("Character at index 4: {}", c), 
+            None => println!("No character at index 4")
+        }
+    }
+}
+```
+
+Output: 
+> After replace: Rust is great!  
+> [The weather is ]  
+> [ nice ]  
+> [ outside mate! ]  
+> my_string: Apple+Pear+Banana  
+> At index = 2: Banana  
+> Before trim:     test123   
+>   
+> After trim: test123  
+> Character at index 4: d  
+
 ## 34. Multiple Source Files 
 
 ## 35. Regular Expressions 

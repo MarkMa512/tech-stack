@@ -13,34 +13,31 @@
         3. [Boolean Type](#boolean-type)
         4. [Character Type](#character-type)
     2. [Compound Types](#compound-types)
-        1. [Tuple Type](#tuple-type)
-        2. [Array Type](#array-type)
-6. [Functions](#6-functions)
-    1. [Function Parameters](#function-parameters)
-    2. [Function Return Values](#function-return-values)
-    3. [Function Pointers](#function-pointers)
-7. [Control Flow](#7-control-flow)
-    1. [If Expressions](#if-expressions)
-    2. [Loops](#loops)
-    3. [While Loops](#while-loops)
-    4. [For Loops](#for-loops)
-8. [Ownership](#8-ownership)
-    1. [Ownership Rules](#ownership-rules)
-    2. [References and Borrowing](#references-and-borrowing)
-    3. [Slices](#slices)
-9. [Structs](#9-structs)
-    1. [Struct Methods](#struct-methods)
-    2. [Associated Functions](#associated-functions)
-    3. [Tuple Structs](#tuple-structs)
-    4. [Unit-Like Structs](#unit-like-structs) 
-10. [Enums](#10-enums)
-    1. [Enums with Data](#enums-with-data)
-    2. [Enums with Methods](#enums-with-methods)
-    3. [Enums with C-like Variants](#enums-with-c-like-variants)
-    4. [Enums with Tuple Variants](#enums-with-tuple-variants)
-    5. [Enums with Struct Variants](#enums-with-struct-variants)
-
-
+6. [If Else Statement](#6-if-else-statement)
+    1. [Comparison Operators](#comparison-operators)
+7. [Infinite Loop](#7-infinite-loop)
+8. [While Loop](#8-while-loop)
+9. [For Loop](#9-for-loop)
+    1. [Looping over a Vector](#looping-over-a-vector)
+        1. [Find the index while looping over a vector](#find-the-index-while-looping-over-a-vector)
+10. [Enum](#10-enum)
+11. [Constant](#11-constants)
+12. [Tuple](#12-tuple)
+    1. [Destructuring Assignment for Tuples](#destructuring-assignment-for-tuples)
+13. [Functions](#13-functions)
+14. [Code Blocks](#14-code-blocks)
+15. [Shadowing](#15-shadowing)
+16. [References](#16-references)
+    1. [The Rules of References](#the-rules-of-references)
+17. [Structs](#17-structs)
+18. [Tuple Structs](#18-tuple-structs)
+19. [Pass by Reference](#19-pass-by-reference) 
+20. [Arrays](#20-arrays)
+    1. [Array Types](#array-type)
+21. [Impl Keyword (Implement)](#21-impl-keyword-implement)
+22. [Strings](#22-strings)
+    1. [Method for String](#methods-for-string)
+23. [Implementing Traits](#23-implementing-traits)
 
 
 ## 1. Hello World
@@ -179,8 +176,7 @@ let y: char = 'y';
 ```
 
 ### Compound Types
-Compound types can group multiple values into one type. Rust has two primitive compound types: tuples and arrays. Refer to: 
-
+Compound types can group multiple values into one type. Rust has two primitive compound types: tuples and arrays. 
 
 
 ## 6. If Else Statement
@@ -484,7 +480,7 @@ println!("{}", a);
 Output: 
 > 2
 
-##### Destructuring Assignment for Tuples
+### Destructuring Assignment for Tuples
 You can use destructuring assignment to assign the elements of a tuple to variables / declare variables from the elements of a tuple.
 
 ```rust
@@ -594,7 +590,7 @@ Shadowing is the process of re-declaring a variable. To shadow a variable, use t
         }
 
         println!("The value of x is {}", x); // the value of x is still 10
-
+    }
     ```
 
     - Output:
@@ -1188,6 +1184,9 @@ fn main(){
         /*Replace*/
         let my_string = String::from("Rust is fantastic!"); 
         println!("After replace: {}", my_string.replace("fantastic", "great")); 
+        /*
+        Although the String itself is not mutable by default, the replace method creates a new String instance with the modified content, leaving the original String unchanged.
+        */
     }
     {
         /*Lines*/

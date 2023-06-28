@@ -38,7 +38,25 @@
 22. [Strings](#22-strings)
     1. [Method for String](#methods-for-string)
 23. [Implementing Traits](#23-implementing-traits)
-
+24. [Vectors](#24-vectors)
+25. [Read a File](#25-read-a-file)
+26. [Command Line Arguments](#26-command-line-arguments)
+27. [Write to a File](#27-write-to-a-file)
+28. [Define Traits](#28-define-traits)
+29. [Pattern Matching](#29-pattern-matching)
+30. [Reading User Input](#30-reading-user-input)
+31. [HashMap](#31-hashmap)
+32. [Random Numbers](#32-random-numbers)
+33. [String Methods](#33-string-methods)
+34. [Multiple Source Files](#34-multiple-source-files)
+35. [Regular Expressions](#35-regular-expressions)
+36. [Modules (Mod keyword)](#36-modules-mod-keyword)
+37. [Option (Enum)](#37-option-enum)
+38. [HTTP GET Requests](#38-http-get-requests)
+39. [Enum Methods](#39-enum-methods)
+40. [Running / Executing Commands (CLI)](#40-running--executing-commands-cli)
+41. [Writing and Running Tests](#41-writing-and-running-tests)
+42. [Parsing JSON](#42-parsing-json2)
 
 ## 1. Hello World
 
@@ -1114,6 +1132,8 @@ fn main(){
 ```
 
 ## 30. [Reading User Input](https://www.youtube.com/watch?v=07pDD0uLjYc)
+
+## 31. [HashMap]
 ```rust
 use std::collections::HashMap; 
 

@@ -1259,6 +1259,33 @@ Output:
 > Character at index 4: d  
 
 ## 34. Multiple Source Files 
+### Directory Structure: 
+
+- `src`: all the rust source files 
+    - `decode.rs` 
+    - `main.rs` 
+
+`decode.rs` 
+```rust 
+pub fn print_message(){
+    println!("How's it going? ")
+}
+```
+By default, function in a module is private, aka it can only be assessed by the module itself. 
+
+To give access permission to the `main.rs`, we need to use `pub` before `fn` to make the function public.  
+`main.rs`
+```rust
+mod decode; 
+
+fn main(){
+    decode::print_message(); 
+}
+```
+
+Output: 
+> How's it going? 
+
 
 ## 35. Regular Expressions 
 

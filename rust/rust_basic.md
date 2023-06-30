@@ -1286,12 +1286,43 @@ fn main(){
 Output: 
 > How's it going? 
 
-
 ## 35. Regular Expressions 
+`Cargo.toml`
+
 
 ## 36. Modules (Mod keyword) 
 
 ## 37. Option (Enum)
+An option represents either a value or no value at all. Many methods in rust return this type, forcing the programmers to deal with the scenarios when sometimes no values are get. 
+
+```rust 
+fn main(){
+    let name = String::from("ABCDE"); 
+
+    println!("Char at index 8: {}", match name.chars().nth(8){ // will return an option 
+        Some(c) => c.to_string(), // when a char is found, the char itself as a string
+        None => "No char at index 8!".to_string() // if no char are found at index 8 
+    });  
+}
+```
+### Define a function that will return an option 
+
+```rust
+fn get_occupation(name:&str)-> Option<&str>{ //Option is of type String, when some is returned 
+    match name {
+        "Dominic" => Some("Software Developer"), 
+        "Michael" => Some("Dentist"), 
+        _ => None
+    }
+}
+
+fn main(){
+    println!("Occupation is {}", match get_occupation("Dominic"){
+        Some(occupation) => occupation, 
+        None => "No occupation found"
+    }); 
+}
+```
 
 ## 38. HTTP GET Requests
 

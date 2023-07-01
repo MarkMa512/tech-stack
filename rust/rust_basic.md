@@ -1317,6 +1317,42 @@ Output:
 
 ## 35. Regular Expressions 
 `Cargo.toml`
+```toml 
+...
+[dependencies]
+regex = "0.2" 
+```
+`main.rs` 
+```rust 
+extern crate regex; 
+use regex::Regex; 
+
+fn main(){
+    let re = Regex::new(r"\w{5}").unwrap(); // a raw string that will match a 5 letter word
+    let text = "decode"; 
+
+    println!("Found match? {}", re.is_match(text)); 
+}
+```
+
+Output: 
+> Found match? true
+
+### Get the matched text with Captures 
+```rust 
+extern crate regex; 
+use regex::Regex; 
+
+fn main(){
+    let re = Regex::new(r"(\w{5})").unwrap(); // a raw string that will match a 5 letter word
+    let text = "decod"; 
+
+    match re.captures(text){ // it will return an Option 
+        Some(caps) => println!("Found Match:{}", caps.get(0).unwrap().as_str()), 
+        None => println!("No match was found")
+    }
+}
+```
 
 
 ## 36. Modules (Mod keyword) 

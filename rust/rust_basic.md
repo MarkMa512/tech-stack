@@ -1354,8 +1354,39 @@ fn main(){
 }
 ```
 
+## 36. Modules (mod keyword) 
+To define a module, use `mod` keyword
 
-## 36. Modules (Mod keyword) 
+```rust
+mod decode{
+    pub fn print_message(){
+        // by default, all fns are private in a module
+        // we need pub keyword to give it public visibility 
+        println!("How's it going!"); 
+        private_function(); 
+        // we are able to indirectly call the private function through public function of the same module 
+    }
+    fn private_function(){
+        println!("This is a private function that cannot be called directly from other modules."); 
+    }
+
+    pub mod water{
+        pub fn print_message(){
+            println!("I am water!" ); 
+        }
+    } 
+}
+
+fn main(){
+    decode::print_message(); 
+    decode::water::print_message(); 
+}
+```
+
+Output: 
+> How's it going!  
+> This is a private function that cannot be called directly from other modules.  
+> I am water!  
 
 ## 37. Option (Enum)
 An option represents either a value or no value at all. Many methods in rust return this type, forcing the programmers to deal with the scenarios when sometimes no values are get. 

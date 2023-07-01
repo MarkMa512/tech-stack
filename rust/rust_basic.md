@@ -1133,6 +1133,35 @@ fn main(){
 
 ## 30. [Reading User Input](https://www.youtube.com/watch?v=07pDD0uLjYc)
 
+```rust
+use std::io; 
+
+fn main(){
+    let mut input = String::new(); 
+    println!("Please enter your name" ); 
+
+    // use the 
+    match io::stdin().read_line(&mut input){ // returns success or failure 
+        Ok(_) => {
+            println!("Success! Hello {}", input); 
+        }, 
+        Err(e) => {
+            println!("Something went wrong: {}", e); 
+        }
+    }
+}
+```
+
+In the line `match io::stdin().read_line(&mut input)`, we pass &`mut` input as a *mutable reference* to the `read_line` function because the function needs to modify the String variable input in order to store the user's input.
+
+In Rust, function arguments are **passed by value by default**. When you pass a value as an argument to a function, a *copy* of that value is made, and **any modifications made to the value inside the function do not affect the original value**. This is known as "moving" the value.
+
+However, in this case, we want the `read_line` function to modify the input variable directly rather than making a copy. By passing &mut input as a mutable reference, we allow the function to directly access and modify the original String value.
+
+The `&mut` syntax indicates that we are passing a mutable reference. It allows the function to have *mutable access* to the data referenced by input and modify it if needed. In this case, the `read_line` function appends the user's input to the input string, changing its content.
+
+If we were to pass input directly without the &mut reference, it would result in a compile-time error because the read_line function expects a mutable reference. By using &mut, we are explicitly indicating our intent to allow the function to modify the variable.
+
 ## 31. [HashMap]
 ```rust
 use std::collections::HashMap; 

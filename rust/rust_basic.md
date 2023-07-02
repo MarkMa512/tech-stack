@@ -1496,6 +1496,34 @@ Output:
 
 ## 40. Running / Executing Commands (CLI)
 
+`decode.py`
+```py
+print("Hello I am from Python!")
+```
+`src/main.rs`
+```rust
+use std::process::Command; 
+
+fn main(){
+    //python decode.py
+    let mut cmd = Command::new("python"); // pass in the executable name 
+    cmd.arg("decode.py") //add argument to the command 
+
+    // execute the command 
+    match cmd.output(){
+        Okay(o){
+            // get the standard output which the python print to 
+            unsafe{
+            // o.stdout // produces a vector of bytes, not a string 
+            println!("Output:{}", String::from_utf8_unchecked(o.stdout));  // unsafe as it does not check if o.stdout is a valid UTF8 string or not. 
+            }
+        }, 
+        Err(e){
+            println!("There was an error! {}", e); 
+        }
+    }
+}
+```
 
 ## 41. Writing and Running Tests 
 

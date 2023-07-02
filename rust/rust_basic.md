@@ -1422,11 +1422,58 @@ fn main(){
 
 ## 38. HTTP GET Requests
 
+`Cargo.toml`
+```toml 
+...
+[dependencies]
+request = "0.8.3" 
+```
+### Detailed Method 
+Allows granular management of the response. 
+```rust
+extern crate reqwest; 
+
+fn main(){
+    match reqwest::get("http://url.com/hello"){
+        Ok(mut response) => {
+            // check if 200 okay 
+            if response.status() == reqwest::StatusCode::Ok{
+                match response.text(){
+                    Okay(text) => println!("Response Text: {}", text), 
+                    Err(_) => println!("Could not read response text!" )
+                }
+            }else{
+                println!("Response is not okay"); 
+            }
+        }, 
+        Err(_)=>println!("Could not make the request!")
+    }
+}
+```
+
+### Express Method 
+```rust
+extern crate reqwest; 
+
+fn main(){
+    let response_text = reqwest::get("http://url.com/hello")
+        .expect("could not make request")
+        .text()
+        .expect("Could not read response text!"); 
+
+    println!("Response Text: {}", response_text); 
+}
+```
+
 ## 39. Enum Methods 
+
 
 ## 40. Running / Executing Commands (CLI)
 
+
 ## 41. Writing and Running Tests 
 
+
 ## 42. Parsing JSON 
+
 

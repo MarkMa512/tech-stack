@@ -1590,4 +1590,76 @@ mod decode_tests{
 
 ## 42. Parsing JSON 
 
+`Cargo.toml`
+```toml 
+...
+[dependencies]
+serde = "1.0"
+serde_json = "1.0" 
+serde_derive = "1.0" 
+```
+### Express way: access the data through Array-like syntax
+`main.rs`
+```rust
+extern crate serde_json; 
 
+use serde_json::Value as JsonValue; 
+
+fn main(){
+    let json_str = r#"
+        {
+            "name": "Dom", 
+            "age":65, 
+            "is_male":true
+        }
+    "#; 
+
+    let res = serde_json::from_str(json_str); 
+
+    if res.is_ok(){
+        let pass:JsonValue = res.unwrap(); 
+        println!("The name is {}", pass["name"]); // pass["name"] returns a type of JSON String, so there is a "" when rust convert it to a rust string 
+    }else{
+        println!("Could not parse JSON!" ); 
+    }
+}
+```
+
+Output: 
+> The name is "Dom" 
+
+### Struct Approach 
+
+`main.rs`
+```rust
+extern crate serde_json; 
+extern crate serde; 
+#[macro_use]
+extern crate serde_derive; 
+
+#[derive(Serialize, Deserialize)]
+struct Person{
+    name:String, 
+    age: u8, 
+    is_male:bool
+}
+
+fn main(){
+    let json_str = r#"
+        {
+            "name": "Dom", 
+            "age":65, 
+            "is_male":true
+        }
+    "#; 
+
+    let res = serde_json::from_str(json_str); 
+
+    if res.is_ok(){
+        let pass:Person = res.unwrap(); // automatically to map to the person struct
+        println!("The name is {}", pass.name); 
+    }else{
+        println!("Could not parse JSON!" ); 
+    }
+}
+```

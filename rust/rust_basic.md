@@ -1466,7 +1466,33 @@ fn main(){
 ```
 
 ## 39. Enum Methods 
+- Allows some of the logic to move from main function to the `enum` type. 
+- Make the code cleaner 
 
+```rust
+#![allow(dead_code)] // make the compiler to ignore the dead code 
+
+enum Day{
+    Mon, Tue, Wed, Thu, Fri, Sat, Sun
+}
+
+impl Day {
+    fn is_weekday(&self) -> bool {
+        match self{
+            &Day::Sat | &Day::Sun => return false, // reference to enum 
+            _=> return true
+        }
+    }
+}
+
+fn main(){
+    let d = Day::Tue; 
+    println!("Is d a weekday?", d.is_weekday()); 
+}
+```
+
+Output: 
+> Is d a weekday? true
 
 ## 40. Running / Executing Commands (CLI)
 

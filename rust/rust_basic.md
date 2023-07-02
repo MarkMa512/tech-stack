@@ -1526,7 +1526,67 @@ fn main(){
 ```
 
 ## 41. Writing and Running Tests 
+Run all the test: 
+```sh
+cargo test 
+```
 
+To write a test: 
+`main.rs`
+
+```rust
+struct Rectangle{
+    width: u8, 
+    height: u8
+}
+impl Rectangle{
+    fn is_square(&self)->bool{
+        self.width == self.height 
+    }
+}
+fn main(){
+    
+}
+
+fn get_two()-> i32{
+    2
+}
+
+#[cfg(test)] // prevents the module from compilation unless when testing 
+mod decode_tests{
+    use super::*; // Import the Rectangle struct and get_two function
+    #[test] // the function following this line is gonna be a test 
+    #[should_panic] // indicate the test should fail 
+    fn test_basic(){
+        assert!(1 == 1); // okay 
+        panic!("Oh no"); // make the test fails  
+    }
+
+    #[test]
+    #[ignore] // ignore a test 
+    fn test_equals(){
+        assert_eq!(2, 1+1); 
+        assert_ne!(2, 6+6 ); 
+    }
+    // the number of test displayed will be the number of test function, not the number of assertion. 
+
+    #[test]
+    fn test_equals_2(){
+        assert_eq!(super::get_two(), 1+1); 
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_structs(){
+        let r = super::Rectangle{
+            width: 50, 
+            height: 25
+        }; 
+
+        assert!(r.is_square()); 
+    }
+}
+```
 
 ## 42. Parsing JSON 
 

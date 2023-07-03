@@ -52,6 +52,12 @@
     * [Convert Array to ArrayList](#convert-array-to-arraylist)
     * [Convert ArrayList to Array](#convert-arraylist-to-array)
     * [Sorting Array](#sorting-array)
+    * [Sorting Arrays of Objects](#sorting-arrays-of-objects)
+    * [Passing Arrays to Methods](#passing-arrays-to-methods)
+* [printf()](#printf)
+
+
+
 ## Java Data Types
 
 ### Primitive Data Types
@@ -1437,3 +1443,7 @@ Format Rules:
 
     “%1$tA, %1$tB, %1$tY %n”, date 
     “%1$td, %1tm, %1$ty %n”, date
+
+## Multi-threading 
+
+## Asych Await 

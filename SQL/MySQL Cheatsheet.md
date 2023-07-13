@@ -87,3 +87,34 @@ CREATE TABLE performance
 );
 ```
 
+## Insert Values 
+
+### Insert 1 Record 
+
+```sql
+INSERT INTO student VALUES 
+(00000, 'Ama');
+```
+### Specify Column Name 
+
+```sql
+INSERT INTO student(student_id, student_name) VALUES 
+(00000, 'Ama');
+```
+
+### Insert Multiple Records 
+```sql
+INSERT INTO student(student_id, student_name) VALUES 
+(00000, 'Ama'), (00001, 'Bob'), (00002, 'Charlie'); 
+```
+
+## Delete Data from Table 
+
+```sql
+DELETE FROM student where student_id = 00001; 
+```
+
+## Update Data in the Table 
+```sql
+update faculty set faculty_name = 'Tom' where faculty_id = 00001; 
+```

@@ -118,3 +118,25 @@ DELETE FROM student where student_id = 00001;
 ```sql
 update faculty set faculty_name = 'Tom' where faculty_id = 00001; 
 ```
+
+## Change Table Structure 
+
+### Add a New Column 
+```sql
+ALTER TABLE student ADD admission_date DATE NOT NULL; 
+```
+
+### Add a New Constraint 
+```sql 
+ALTER TABLE student ADD CONSTRAINT student_fk1 FOREIGN KEY (admission_date) REFERENCES admission_record(admission_date); 
+```
+
+### Drop an Existing Column 
+```sql
+ALTER TABLE student DROP admission_date; 
+```
+
+### Drop an Existing Foreign Key Constraint 
+```sql 
+ALTER TABLE student DROP FOREIGN KEY student_fk1; 
+```

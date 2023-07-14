@@ -140,3 +140,49 @@ ALTER TABLE student DROP admission_date;
 ```sql 
 ALTER TABLE student DROP FOREIGN KEY student_fk1; 
 ```
+
+## SELECT Statement 
+
+- `SELECT`: List the columns and expressions that should be returned from the query 
+- `FROM`: indicate the table / views from which data will be obtained 
+- `WHERE`: indicate the conditions under which a row will be included in the result 
+- `GROUP BY`: indicate categorization of results 
+- `HAVING`: indicate the condition under which a category (group) will be included. 
+- `ORDER BY`: sort the result according to specified criteria
+
+### WHERE Clause
+
+#### Comparison Operator in SQL 
+| Operator | Meaning | 
+| --- | --- | 
+| `=` | Equal to |
+| `>` | Greater than |
+| `>=` | Greater than or Equal to |
+| `<` | Less than |
+| `<=` | Less than or Equal to |
+| `<>` | Not Equal to |
+| `!=` | Not Equal to |
+
+#### Multiple Conditions: 
+
+Use: 
+- `NOT`
+- `AND`
+- `OR`
+to customize them 
+
+### LIKE and Wildcards 
+
+Wildcards: 
+
+- `%`: represents any collection of characters 
+    - `%Desk`: ComputerDesk, StudyDesk ... 
+- `_`: represents exactly 1 char 
+    - `_-drawer`: a-drawer, 1-drawer ... 
+- `*`: represents all the attributes 
+
+Keyword `LIKE` is paired with wildcard characters `%` and `_`: 
+
+```sql
+SELECT * FROM course WHERE course_name LIKE '%Data%'; 
+```

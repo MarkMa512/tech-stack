@@ -186,3 +186,21 @@ Keyword `LIKE` is paired with wildcard characters `%` and `_`:
 ```sql
 SELECT * FROM course WHERE course_name LIKE '%Data%'; 
 ```
+
+### SQL Functions 
+
+| Function | Usage |
+| --- | --- | 
+| MIN | find the lowest value of the column | 
+| MAX | find the highest value of the column | 
+| AVG | find the average value of the column | 
+| SUM | find the summary value of the column | 
+| COUNT() | return the number of records (rows) that satisfy specified condition | 
+| DISTINCT | find the unique values | 
+
+### GROUP BY 
+
+- Provides means of grouping the result set by certain database column(s)
+- Usually used in conjunction with SQL functions
+- `HAVING` clause is to extract the groups that satisfy some condition(s)
+- `HAVING` acts as `WHERE` clause but it follows `GROUP BY` clause

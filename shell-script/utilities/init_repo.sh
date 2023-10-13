@@ -17,7 +17,8 @@ fi
 git init
 
 # Add init_repo.sh to .gitignore so it is not pushed to the remote repository
-echo "init_repo.sh" >> .gitignore
+# The -e flag tells echo to interpret backslash escapes, and \n is the escape sequence for a newline.
+echo -e "\ninit_repo.sh" >> .gitignore
 
 # Add all changes
 git add .
